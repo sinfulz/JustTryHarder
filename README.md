@@ -127,4 +127,28 @@ Password: (password)
 cd /usr/share/windows-binaries
 python /usr/share/doc/python-impacket/examples/smbserver.py a .
 
+SMTP Enumeration
+----------------
+https://github.com/s0wr0b1ndef/OSCP-note/blob/master/ENUMERATION/SMTP/smtp_commands.txt
 
+
+Web Shells
+----------------
+- https://github.com/Arrexel/phpbash
+- https://github.com/flozz/p0wny-shell
+
+WordPress
+----------------
+- https://forum.top-hat-sec.com/index.php?topic=5758.0
+
+Windows Framework / Powershell
+----------------
+- https://github.com/samratashok/nishang
+- https://github.com/PowerShellMafia/PowerSploit/tree/master/Privesc
+- https://github.com/rasta-mouse/Sherlock
+
+Windows Post Exploitation Commands
+----------------
+- net user
+- net user USERNAME NEWPASS
+- net user "USER NAME" NEWPASS
