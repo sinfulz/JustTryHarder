@@ -44,9 +44,11 @@ Priv Esc - Windows
 
 Post Exploitation
 ----------------
-Mimikatz.exe
-privilege::debug
-sekurlsa::logonpasswords
+- Mimikatz.exe (run it)
+
+- privilege::debug
+
+- sekurlsa::logonpasswords
 
 Port Scanning
 ----------------
@@ -96,25 +98,21 @@ Shell Upgrading
 Show listening ports
 ----------------
 - Linux netstat syntax
-netstat -tulpn | grep LISTEN
+	1. netstat -tulpn | grep LISTEN
 
 - FreeBSD/MacOS X netstat syntax
-netstat -anp tcp | grep LISTEN
-netstat -anp udp | grep LISTEN
-
+	1. netstat -anp tcp | grep LISTEN
+	2. netstat -anp udp | grep LISTEN
+	
 - OpenBSD netstat syntax
 
-	netstat -na -f inet | grep LISTEN
-	netstat -nat | grep LISTEN
-
-	
-
-	
+	1. netstat -na -f inet | grep LISTEN
+	2. netstat -nat | grep LISTEN
 
 - Nmap scan syntax
-sudo nmap -sT -O localhost
-sudo nmap -sU -O 192.168.2.13 ##[ list open UDP ports ]##
-sudo nmap -sT -O 192.168.2.13 ##[ list open TCP ports ]##
+	1. sudo nmap -sT -O localhost
+	2. sudo nmap -sU -O 192.168.2.13 ##[ list open UDP ports ]##
+	3. sudo nmap -sT -O 192.168.2.13 ##[ list open TCP ports ]##
 
 SMB - Impacket
 ----------------
@@ -122,6 +120,7 @@ SMB - Impacket
 /usr/share/doc/python-impacket/examples/psexec.py user@10.10.10.10
 
 Password: (password)
+
 [*] Trying protocol 445/SMB...
 
 - Impacket's SMBServer
