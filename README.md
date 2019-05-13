@@ -95,22 +95,26 @@ Shell Upgrading
 
 Show listening ports
 ----------------
-Linux netstat syntax
-$ netstat -tulpn | grep LISTEN
+- Linux netstat syntax
+netstat -tulpn | grep LISTEN
 
-FreeBSD/MacOS X netstat syntax
-$ netstat -anp tcp | grep LISTEN
-$ netstat -anp udp | grep LISTEN
+- FreeBSD/MacOS X netstat syntax
+netstat -anp tcp | grep LISTEN
+netstat -anp udp | grep LISTEN
 
-OpenBSD netstat syntax
-$ netstat -na -f inet | grep LISTEN
-$ netstat -nat | grep LISTEN
+- OpenBSD netstat syntax
 
-Option #3: nmap command
-The syntax is:
-$ sudo nmap -sT -O localhost
-$ sudo nmap -sU -O 192.168.2.13 ##[ list open UDP ports ]##
-$ sudo nmap -sT -O 192.168.2.13 ##[ list open TCP ports ]##
+	netstat -na -f inet | grep LISTEN
+	netstat -nat | grep LISTEN
+
+	
+
+	
+
+- Nmap scan syntax
+sudo nmap -sT -O localhost
+sudo nmap -sU -O 192.168.2.13 ##[ list open UDP ports ]##
+sudo nmap -sT -O 192.168.2.13 ##[ list open TCP ports ]##
 
 SMB - Impacket
 ----------------
