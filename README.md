@@ -88,6 +88,11 @@ Pivoting
 ----------------
 sshuttle -r user@10.10.10.10 10.1.1.0/24
 
+Reverse Shells
+----------------
+#Windows
+- https://github.com/Dhayalanb/windows-php-reverse-shell
+
 Shell Upgrading
 ----------------
 - In reverse shell
