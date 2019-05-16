@@ -43,6 +43,9 @@ PHP
 
 Priv Esc - Linux
 ----------------
+- https://gtfobins.github.io
+- https://github.com/InteliSecureLabs/Linux_Exploit_Suggester
+- https://github.com/jondonas/linux-exploit-suggester-2
 - grep -Ri 'password' .
 - find / -perm –4000 2>/dev/null
 - find / -user root -perm -4000 -exec ls -ldb {} \;
