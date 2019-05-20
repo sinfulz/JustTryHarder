@@ -1,7 +1,7 @@
 # JustTryHarder
 Just Try Harder and pass the OSCP!
 
-
+Disclaimer: none of the below includes spoilers for the PWK labs / OSCP Exam.
 
 Active Directory & Domain Controllers
 ----------------
