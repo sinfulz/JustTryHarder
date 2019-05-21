@@ -63,6 +63,16 @@ MSSQL / SQLi
 - https://github.com/codingo/OSCP-2/blob/master/Documents/SQL%20Injection%20Cheatsheet.md
 - http://pentestmonkey.net/category/cheat-sheet/sql-injection
 
+Password Cracking
+----------------
+#Hashcat
+- user:$1$AbCdEf123/:16903:0:99999:7::: 
+- hashcat -m 500 -a 0 -o cracked_password.txt --force MD5_hash.txt /usr/share/wordlists/rockyou.txt
+
+#John
+- user:$1$AbCdEf123/:16903:0:99999:7::: 
+- john --rules --wordlist=/usr/share/wordlists/rockyou.txt MD5_hash.txt
+
 Payload Generation
 ----------------
 - https://netsec.ws/?p=331
@@ -202,6 +212,14 @@ https://github.com/s0wr0b1ndef/OSCP-note/blob/master/ENUMERATION/SMTP/smtp_comma
 VMware (not going full screen)
 ----------------
 - systemctl restart open-vm-tools.service
+
+Web Scanning:
+----------------
+#HTTP
+- gobuster -u http://10.10.10.10/ -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -t 69
+
+#HTTPS
+- gobuster -k -u https://10.10.10.10/ -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -t 69
 
 Web Shells
 ----------------
