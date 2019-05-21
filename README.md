@@ -79,6 +79,8 @@ PHP
 
 Priv Esc - Linux
 ----------------
+- If GCC & WGet is installed it is likely the system is vulnerable to a kernel exploit
+- https://github.com/SecWiki/linux-kernel-exploits
 - https://gtfobins.github.io
 - https://github.com/InteliSecureLabs/Linux_Exploit_Suggester
 - https://github.com/jondonas/linux-exploit-suggester-2
