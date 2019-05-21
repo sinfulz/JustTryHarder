@@ -89,7 +89,7 @@ PHP
 
 Priv Esc - Linux
 ----------------
-- If GCC & WGet is installed it is likely the system is vulnerable to a kernel exploit
+# If GCC & WGet is installed it is likely the system is vulnerable to a kernel exploit
 - https://github.com/SecWiki/linux-kernel-exploits
 - https://gtfobins.github.io
 - https://github.com/InteliSecureLabs/Linux_Exploit_Suggester
@@ -119,10 +119,12 @@ Port Scanning
 ----------------
 #TCP
 - reconnoitre -t 10.10.10.10 -o . --services --quick --hostnames
+- nmap -vvv -sC -sV -p- --min-rate 2000 10.10.10.10
 - nmap -sT -p 22,80,110 -A 
-- nmap -p- -iL ips.txt > AllTCPPorts.txt 
+- nmap -p- -iL ips.txt > TCP_Ports.txt 
 
 #UDP (can take hours so maybe netstat is a better alternative)
+- nmap -sU --top-ports 10000
 - nmap -sT -sU -p 22,80,110 -A 
 - nmap -sT -sU -p- --min-rate 10000
 - nmap -p- -sU -iL ips.txt > udp.txt 
@@ -215,8 +217,12 @@ VMware (not going full screen)
 
 Web Scanning:
 ----------------
+#for gobuster on windows machines on iis, I usually include -x asp,aspx
+#for gobuster on apache tomcat, include jsp
+
 #HTTP
 - gobuster -u http://10.10.10.10/ -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -t 69
+- gobuster -u http://10.10.10.10 -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt -x php,html,txt -t 69
 
 #HTTPS
 - gobuster -k -u https://10.10.10.10/ -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -t 69
