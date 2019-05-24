@@ -195,6 +195,12 @@ Show listening ports
 	2. sudo nmap -sU -O 192.168.2.13 ##[ list open UDP ports ]##
 	3. sudo nmap -sT -O 192.168.2.13 ##[ list open TCP ports ]##
 
+SMB - Enumeration
+----------------
+- smbmap -H 10.10.10.10
+- smbclient -L 10.0.0.146
+- smbclient //10.10.10.10/share$
+
 SMB - Impacket
 ----------------
 - Impacket's PSEXEC (After creating a remote port fwd)
