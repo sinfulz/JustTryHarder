@@ -21,9 +21,10 @@ BOF (WIP)
 
 DNS - Zone Transfers
 ----------------
-host -t axfr test.local 10.10.10.10
-
-host -l test.local 10.10.10.10
+- host -t axfr HTB.local 10.10.10.10
+- host -l HTB.local 10.10.10.10
+- host -l <domain name> <name server>
+- dig @<dns server> <domain> axfr
 
 File Transfers
 ----------------
