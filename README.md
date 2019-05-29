@@ -99,6 +99,8 @@ Priv Esc - Linux
 - grep -Ri 'password' .
 - find / -perm –4000 2>/dev/null
 - find / -user root -perm -4000 -exec ls -ldb {} \;
+- which awk perl python ruby gcc cc vi vim nmap find netcat nc wget tftp ftp 2>/dev/null
+(then ls -la, look for 777 file permissions).
 
 Priv Esc - Windows
 ----------------
