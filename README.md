@@ -226,8 +226,8 @@ VMware (not going full screen)
 
 Web Scanning:
 ----------------
-#for gobuster on windows machines on iis, I usually include -x asp,aspx
-#for gobuster on apache tomcat, include jsp
+- for gobuster on windows machines on iis, I usually include -x asp,aspx
+- for gobuster on apache tomcat, include jsp
 
 #HTTP
 - gobuster -u http://10.10.10.10/ -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -t 69
@@ -235,6 +235,16 @@ Web Scanning:
 
 #HTTPS
 - gobuster -k -u https://10.10.10.10/ -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -t 69
+
+#Nikto
+- nikto -h 10.10.10.10 -p 80
+
+#Nikto HTTPS
+- nikto -h 10.10.10.10. -p 443
+
+WFuzz
+- wfuzz -u http://google.com/login.php?username=admin&password=FUZZ -w /usr/share/wordlists/rockyou.txt
+- wfuzz -u http://10.10.10.10/hello.php?dir=../../../../../../../../../FUZZ%00 -w /usr/share/wfuzz/wordlist/general/common.txt
 
 Web Shells
 ----------------
