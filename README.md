@@ -163,9 +163,9 @@ Reverse Shells
 Shell Upgrading
 ----------------
 - In reverse shell
-
-1. python -c 'import pty; pty.spawn("/bin/bash")'
-2. Ctrl-Z
+```
+python -c 'import pty; pty.spawn("/bin/bash")'
+Ctrl-Z
 
 - In Kali
 
@@ -177,7 +177,7 @@ Shell Upgrading
 6. export SHELL=bash
 7. export TERM=xterm-256color
 8. stty rows <num> columns <cols> (optional)
-
+```
 Show listening ports
 ----------------
 - Linux netstat syntax
