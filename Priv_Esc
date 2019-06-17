@@ -11,7 +11,11 @@ find / -user root -perm -4000 -exec ls -ldb {} \;
 https://docs.oracle.com/cd/E19683-01/816-4883/6mb2joatb/index.html
 
 Windows
-
+- Check if Powershell is installed (C:\Windows\System32\WindowsPowerShell)
+- Check if there is a priv esc script (PowerUp?)
+- Check if there is a kernel exploit 
+- Check the programs running by checking the program files folder (look for old, outdated, vulnerable programs)
+- Run cmdkey list
 So from the Windows cmd shell (through telnet) type "runas /user:ACCESS\Administrator /savecred" as per above file contents THEN, paste the metaploit PSH code AFTER this and it will pop a meterpreter sessions as Administrator.
 
 https://github.com/GDSSecurity/Windows-Exploit-Suggester
