@@ -244,8 +244,26 @@ VMware (not going full screen)
 
 Web Scanning:
 ----------------
-- for gobuster on windows machines on iis, I usually include -x asp,aspx
-- for gobuster on apache tomcat, include jsp
+#Web Scanning with extensions
+
+```
+
+Linux (Example web server might be Apache)
+gobuster -e -u http://10.10.10.10/ -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -x php,html,js,txt,jsp,pl -s 200,204,301,302,307,403,401
+
+Windows (Example web server might be IIS)
+
+gobuster -e -u http://10.10.10.10/ -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -x php,html,js,txt,asp,aspx,jsp,bak -s 200,204,301,302,307,403,401
+
+Linux (Example web server might be Apache) 
+
+python3 dirsearch.py -r -u http://10.10.10.131/ -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt -e php,html,js,txt,jsp,pl -t 50
+
+Windows (Example web server might be IIS)
+
+python3 dirsearch.py -r -u http://10.10.10.131/ -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt -e php,html,js,txt,asp,aspx,jsp,bak -t 50
+
+```
 
 #HTTP
 - gobuster -u http://10.10.10.10/ -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -t 69
