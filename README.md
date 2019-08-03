@@ -1,5 +1,9 @@
 Disclaimer: none of the below includes spoilers for the PWK labs / OSCP Exam.
 
+Credit Info:
+I have obtained a lot of this info through other Github repos, blogs, sites and more.
+I have tried to give as much credit to the original creator as possible, if I have not given you credit please contact me on Twitter: https://twitter.com/s1nfulz
+
 Active Directory & Domain Controllers
 ----------------
 - http://web.archive.org/web/20141004091538/http://www.slaughterjames.com/blog/2012/10/23/hacking-a-domain-controller-part-1-enumeration.html
