@@ -190,7 +190,10 @@ Reverse Shells
 
 Shell Upgrading
 ----------------
-- In reverse shell
+
+#### Python
+1. python -c 'import pty;spawn("/bin/bash");'
+2. In reverse shell:
 ```
 python -c 'import pty; pty.spawn("/bin/bash")'
 Ctrl-Z
@@ -206,6 +209,14 @@ Ctrl-Z
 7. export TERM=xterm-256color
 8. stty rows <num> columns <cols> (optional)
 ```
+
+#### Perl
+1. perl -e 'exec "/bin/sh";'
+2. perl: exec "/bin/sh";
+
+#### Bash
+/bin/sh -i
+
 Show listening ports
 ----------------
 - Linux netstat syntax
