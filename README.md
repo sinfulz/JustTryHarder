@@ -62,6 +62,7 @@ Using MSF. Start MSF before starting these steps:
 	
 	1. Create wget.ps1
 	   $client = New-Object System.Net.WebClient
+	   $path = "C:\path\to\save\file.txt"
 	   $client.DownloadFile($url, $path)
 	
 #Base64
