@@ -5,3 +5,15 @@ https://www.corelan.be/index.php/2009/07/19/exploit-writing-tutorial-part-1-stac
 https://github.com/justinsteven/dostackbufferoverflowgood
 
 https://www.youtube.com/watch?v=OOkU7to0Ty4&t=6s
+
+Slightly more advanced BOF
+===========================
+this is to understand buffer overflow, ret2libc and heap overflow
+https://exploit.education/
+- Protostar 32 bits
+- Phoenix 64 bits and different architectures
+
+https://liveoverflow.com/
+https://www.youtube.com/channel/UClcE-kVhqyiHCcjYwcpfj9w
+https://0xrick.github.io/binary-exploitation/bof5/
+https://blog.lamarranet.com/index.php/exploit-education-phoenix-solutions/
