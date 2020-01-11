@@ -155,6 +155,17 @@ Post Exploitation
 2. privilege::debug
 3. sekurlsa::logonpasswords
 
+Port Forwarding
+----------------
+#Chisel
+- 
+
+#Plink
+-
+
+#SSH
+- ssh root@10.10.10.10 -R 1234:127.0.0.1:1234
+
 Port Scanning
 ----------------
 #TCP
