@@ -259,7 +259,7 @@ SMB - Enumeration
 ----------------
 - https://0xdf.gitlab.io/2018/12/02/pwk-notes-smb-enumeration-checklist-update1.html
 - smbmap -H 10.10.10.10
-- smbclient -L 10.0.0.146
+- smbclient -L 10.0.0.10
 - smbclient //10.10.10.10/share$
 
 SMB - Impacket
