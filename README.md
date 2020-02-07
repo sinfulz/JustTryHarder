@@ -284,6 +284,12 @@ VMware (not going full screen)
 ----------------
 - systemctl restart open-vm-tools.service
 
+Web Servers:
+----------------
+- python -m SimpleHTTPServer 80
+- python3 -m http.server 80
+- ngrok http 80
+
 Web Scanning:
 ----------------
 #Web Scanning with extensions
