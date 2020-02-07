@@ -1,3 +1,11 @@
+# JustTryHarder
+
+JustTryHarder, a cheat sheet which will aid you through the PWK course & the OSCP Exam.
+
+(Inspired by PayloadAllTheThings)
+
+Feel free to submit a Pull Request & leave a star to share some love if this helped you. 💖
+
 Disclaimer: none of the below includes spoilers for the PWK labs / OSCP Exam.
 
 Credit Info:
