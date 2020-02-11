@@ -203,6 +203,10 @@ nmap --script ssh2-enum-algos -iL ips.txt > SSH.txt
 #SSL
 nmap -v -v  --script ssl-cert,ssl-enum-ciphers,ssl-heartbleed,ssl-poodle,sslv2 -iL ips.txt > SSLScan.txt 
 
+PowerShell
+----------------
+- powershell -ExecutionPolicy ByPass -File script.ps1
+
 Pivoting
 ----------------
 - sshuttle -r user@10.10.10.10 10.1.1.0/24
