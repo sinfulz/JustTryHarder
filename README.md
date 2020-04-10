@@ -390,3 +390,14 @@ Windows Post Exploitation Commands
 - net user USERNAME NEWPASS /add
 - net user "USER NAME" NEWPASS /add
 - net localgroup administrators USERNAME /add
+
+Writeable Directories
+(Work in progress)
+----------------
+# Windows
+-  C:\Windows\System32\Spool\Drivers\color
+- %TEMP%
+
+# Linux
+- To find World Writeable Directories in Linux use the command:
+find / -xdev -type d \( -perm -0002 -a ! -perm -1000 \) -print
