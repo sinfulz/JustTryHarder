@@ -14,9 +14,7 @@ I have tried to give as much credit to the original creator as possible, if I ha
 
 Active Directory & Domain Controllers
 ----------------
-- http://web.archive.org/web/20141004091538/http://www.slaughterjames.com/blog/2012/10/23/hacking-a-domain-controller-part-1-enumeration.html
-
-- http://web.archive.org/web/20160417135414/http://www.slaughterjames.com/blog/2012/10/30/hacking-a-domain-controller-part-2-easy-pwnage.html
+- WIP
 
 BOF (WIP)
 ----------------
@@ -229,6 +227,10 @@ Shell Upgrading
 ----------------
 
 Source: https://blog.ropnop.com/upgrading-simple-shells-to-fully-interactive-ttys/ & https://forum.hackthebox.eu/discussion/142/obtaining-a-fully-interactive-shell
+
+SQL Injection (SQLmap)
+----------------
+- sqlmap -u "http://example.com/test.php?test=test" --level=5 --risk=3 --batch
 
 #### Python
 1. python -c 'import pty;spawn("/bin/bash");'
