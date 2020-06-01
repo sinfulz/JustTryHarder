@@ -414,8 +414,10 @@ Writeable Directories
 (Work in progress)
 ----------------
 # Windows
--  C:\Windows\System32\Spool\Drivers\color
-- %TEMP%
+- C:\Windows\System32\Spool\Drivers\color
+- C:\windows\tracing
+- C:\windows\tasks
+- C:\windows\system32\microsoft\crypto\rsa\machinekeys
 
 # Linux
 - To find World Writeable Directories in Linux use the command:
