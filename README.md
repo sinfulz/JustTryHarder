@@ -313,6 +313,11 @@ SMTP Enumeration
 ----------------
 https://github.com/s0wr0b1ndef/OSCP-note/blob/master/ENUMERATION/SMTP/smtp_commands.txt
 
+ICMP Injection
+----------------
+1. ping -n 3 10.10.10.10
+2. tcpdump -i tun0 icmp
+
 VMware (not going full screen)
 ----------------
 - systemctl restart open-vm-tools.service
