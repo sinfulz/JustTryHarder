@@ -117,6 +117,10 @@ Password Cracking
 - user:$1$AbCdEf123/:16903:0:99999:7::: 
 - john --rules --wordlist=/usr/share/wordlists/rockyou.txt MD5_hash.txt
 
+Password Spraying (CrackMapExec)
+----------------
+cme smb 10.10.10.10 -u username -d domain -p password
+
 Payload Generation
 ----------------
 - https://netsec.ws/?p=331
