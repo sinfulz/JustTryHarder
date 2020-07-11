@@ -334,7 +334,8 @@ Web Servers:
 ----------------
 - python -m SimpleHTTPServer 80
 - python3 -m http.server 80
-- ngrok http 80
+- ngrok http "file:///C:\Users\sinfulz\Public Folder"
+- php -S 0.0.0.0:80
 
 Web Scanning:
 ----------------
