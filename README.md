@@ -207,16 +207,31 @@ nmap -v -v  --script ssl-cert,ssl-enum-ciphers,ssl-heartbleed,ssl-poodle,sslv2 -
 
 Ping Sweep
 ----------------
-# Linux
+# Linux (basic one liners)
 - for i in {1..254} ;do (ping -c 1 192.168.1.$i | grep "bytes from" &) ;done
-- for i in {1..254}; do ping -c 1 192.168.0.$i | grep 'from'; done
 - fping -g 192.168.0.1/24
 
-# Windows
+# Linux (script)
+```
+for i in `seq 1 255`
+do
+    ping -c1 192.168.125.$i 2>/dev/null 1>&2
+    if [[ $? -eq 0 ]]
+    then
+        echo 192.168.125.$i is up
+    fi
+done
+```
+
+# Windows (cmd)
 - for /L %i in (1,1,255) do @ping -n 1 -w 200 192.168.1.%i > nul && echo 192.168.1.%i is up.
+
+# Windows (PowerShell)
+- $ping = New-Object System.Net.Networkinformation.Ping ; 1..254 | % { $ping.send("10.9.15.$_", 1) | where status -ne 'TimedOut' | select Address | fl * }
 
 # Nmap
 - nmap -sP 192.168.0.1-254
+
 
 
 Pivoting
