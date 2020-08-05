@@ -205,9 +205,19 @@ nmap --script ssh2-enum-algos -iL ips.txt > SSH.txt
 #SSL
 nmap -v -v  --script ssl-cert,ssl-enum-ciphers,ssl-heartbleed,ssl-poodle,sslv2 -iL ips.txt > SSLScan.txt 
 
-PowerShell
+Ping Sweep
 ----------------
-- powershell -ExecutionPolicy ByPass -File script.ps1
+# Linux
+- for i in {1..254} ;do (ping -c 1 192.168.1.$i | grep "bytes from" &) ;done
+- for i in {1..254}; do ping -c 1 192.168.0.$i | grep 'from'; done
+- fping -g 192.168.0.1/24
+
+# Windows
+- for /L %i in (1,1,255) do @ping -n 1 -w 200 192.168.1.%i > nul && echo 192.168.1.%i is up.
+
+# Nmap
+- nmap -sP 192.168.0.1-254
+
 
 Pivoting
 ----------------
@@ -391,8 +401,9 @@ WordPress
 Windows Framework / Powershell
 ----------------
 bypass PowerShell execution policy
-```PowerShell -Exec Bypass
-```
+- Bypassing execution policy and executing a script:
+```powershell -ExecutionPolicy ByPass -File script.ps1```
+
 ----------------
 - https://github.com/samratashok/nishang
 - https://github.com/rasta-mouse/Sherlock
@@ -436,4 +447,4 @@ Writeable Directories
 
 # Linux
 - To find World Writeable Directories in Linux use the command:
-find / -xdev -type d \( -perm -0002 -a ! -perm -1000 \) -print
+```find / -xdev -type d \( -perm -0002 -a ! -perm -1000 \) -print```
