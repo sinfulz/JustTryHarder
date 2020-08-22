@@ -262,6 +262,15 @@ Shell Upgrading
 
 Source: https://blog.ropnop.com/upgrading-simple-shells-to-fully-interactive-ttys/ & https://forum.hackthebox.eu/discussion/142/obtaining-a-fully-interactive-shell
 
+Socks Proxy (using PowerShell)
+----------------
+#Local
+- vi /etc/proxychains.conf
+- socks5 <ip> 9080
+- Import-Module .\Invoke-SocksProxy.psm1
+- Invoke-SocksProxy -bindPort 9080
+- proxychains nmap -sT <ip>
+
 SQL Injection (SQLmap)
 ----------------
 - sqlmap -u "http://example.com/test.php?test=test" --level=5 --risk=3 --batch
