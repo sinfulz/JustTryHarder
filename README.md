@@ -137,7 +137,7 @@ PHP
 
 Priv Esc - Linux
 ----------------
-# If GCC & WGet is installed it is likely the system is vulnerable to a kernel exploit
+# If GCC & wget is installed, the system MIGHT be vulnerable to a kernel exploit
 - https://github.com/SecWiki/linux-kernel-exploits
 - https://gtfobins.github.io
 - https://github.com/InteliSecureLabs/Linux_Exploit_Suggester
@@ -145,6 +145,7 @@ Priv Esc - Linux
 - https://blog.g0tmi1k.com/2011/08/basic-linux-privilege-escalation/
 - grep -Ri 'password' .
 - find / -perm –4000 2>/dev/null
+- find / -perm -u=s 2>/dev/null
 - find / -user root -perm -4000 -exec ls -ldb {} \;
 - which awk perl python ruby gcc cc vi vim nmap find netcat nc wget tftp ftp 2>/dev/null
 (then ls -la, look for 777 file permissions).
