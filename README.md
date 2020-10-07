@@ -6,6 +6,9 @@ JustTryHarder, a cheat sheet which will aid you through the PWK course & the OSC
 
 Feel free to submit a Pull Request & leave a star to share some love if this helped you. 💖
 
+**Hacktoberfest friendly!**
+Yes, we are open to Pull Requests for Hacktoberfest! Please ensure its not spam and actaully contributes well to this repo. Thanks & happy hacking!
+
 Disclaimer: none of the below includes spoilers for the PWK labs / OSCP Exam.
 
 Credit Info:
