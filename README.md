@@ -488,8 +488,9 @@ Windows Post Exploitation Commands
 Writeable Directories
 # Windows
 ----------------
-# list from https://github.com/api0cradle/UltimateAppLockerByPassList/blob/master/Generic-AppLockerbypasses.md
+list from https://github.com/api0cradle/UltimateAppLockerByPassList/blob/master/Generic-AppLockerbypasses.md
 The following folders are by default writable by normal users (depends on Windows version - This is from W10 1803)
+```
 C:\Windows\Tasks
 C:\Windows\Temp
 C:\windows\tracing
@@ -506,6 +507,7 @@ C:\Windows\SysWOW64\FxsTmp
 C:\Windows\SysWOW64\com\dmp
 C:\Windows\SysWOW64\Tasks\Microsoft\Windows\SyncCenter
 C:\Windows\SysWOW64\Tasks\Microsoft\Windows\PLA\System
+```
 
 # Linux
 To find World Writeable Directories in Linux use the command:
