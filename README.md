@@ -498,7 +498,14 @@ Writeable Directories
 To find World Writeable Directories in Linux use the command:
 ```find / -xdev -type d \( -perm -0002 -a ! -perm -1000 \) -print```
 
-
+Todo List:
+----------------
+- Improve the readability of the cheatsheet
+- Fill in the empty sections
+- Remove unnecessary sections
+- Integrate the files in the repo into the cheatsheet
+- Migrate to GitBook
+- Include screenshots/gifs into the cheatsheet if needed
 
 Thank you:
 ----------------
