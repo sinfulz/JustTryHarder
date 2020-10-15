@@ -215,6 +215,7 @@ Port Scanning
 - nmap -vvv -sC -sV -p- --min-rate 2000 10.10.10.10
 - nmap -sT -p 22,80,110 -A 
 - nmap -p- -iL ips.txt > TCP_Ports.txt 
+- nc -v -n -z -w1 10.10.10.10 1-10000
 
 #UDP (can take hours so maybe netstat is a better alternative)
 - nmap -sU --top-ports 10000
