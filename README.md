@@ -143,6 +143,7 @@ Priv Esc - Linux
 # If GCC & wget is installed, the system MIGHT be vulnerable to a kernel exploit
 - https://github.com/SecWiki/linux-kernel-exploits
 - https://gtfobins.github.io
+  - GTFO helper script: https://github.com/DreadnaughtSec/gtfo
 - https://github.com/InteliSecureLabs/Linux_Exploit_Suggester
 - https://github.com/jondonas/linux-exploit-suggester-2
 - https://blog.g0tmi1k.com/2011/08/basic-linux-privilege-escalation/
