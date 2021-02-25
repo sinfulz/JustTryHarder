@@ -573,3 +573,7 @@ Thank you:
 - https://www.facebook.com/cyberg0100/posts/github-sinfulzjusttryharder-justtryharder-a-cheat-sheet-which-will-aid-you-throu/653235345249466
 - https://www.reddit.com/r/CyberSpaceVN/comments/f3n2wp/github_sinfulzjusttryharder_justtryharder_a_cheat
 - https://xn4k.github.io/pentest/PWK-course-&-the-OSCP-Exam-Cheatsheet/
+- https://opensourcelibs.com/libs/pentesting-tools
+- https://gitmemory.com/brhannah
+- https://www.bugbountytips.tech/2020/08/23/justtryharderpwk-cheatsheetkali-linux-cheatsheethydra-cheatsheetsecu-2/
+- 
