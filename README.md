@@ -37,12 +37,13 @@ Good BOF resources:
 
 ## Breakouts / Environment Escapes
 ----------------
-- https://blog.netspi.com/breaking-out-of-applications-deployed-via-terminal-services-citrix-and-kiosks/
+- https://www.pentestpartners.com/security-blog/breaking-out-of-citrix-and-other-restricted-desktop-environments/
 - https://sra.io/blog/sitekiosk-breakout/
 - https://www.trustedsec.com/blog/kioskpos-breakout-keys-in-windows/
-- https://www.pentestpartners.com/security-blog/breaking-out-of-citrix-and-other-restricted-desktop-environments/
 - https://cognosec.com/breaking-out-of-citrix-environment/
 - https://blog.netspi.com/breaking-out-of-applications-deployed-via-terminal-services-citrix-and-kiosks/
+- https://research.nccgroup.com/wp-content/uploads/2020/07/research-insights_common-issues-with-environment-breakouts.pdf
+- https://gracefulsecurity.com/citrix-breakout/
 
 ## DNS - Zone Transfers
 ----------------
