@@ -449,7 +449,7 @@ Web Servers:
 
 Web Scanning:
 ----------------
-#Web Scanning with extensions
+Web Scanning with extensions
 
 Linux (Example web server might be Apache)
 ```gobuster dir -e -u http://10.10.10.10/ -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -x php,html,js,txt,jsp,pl -s 200,204,301,302,307,403,401```
@@ -466,17 +466,17 @@ Windows (Example web server might be IIS)
 
 ```python3 dirsearch.py -r -u http://10.10.10.131/ -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt -e php,html,js,txt,asp,aspx,jsp,bak -t 50```
 
-#HTTP
+HTTP
 ```gobuster dir -u http://10.10.10.10 -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt -x php,html,txt -t 69```
 
-#HTTPS
+HTTPS
 ```gobuster dir -k -u https://10.10.10.10/ -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -t 69```
 (in some cases --wildcard will need to be used instead of -k)
 
-#Nikto
+Nikto
 ```nikto -h 10.10.10.10 -p 80```
 
-#Nikto HTTPS
+Nikto HTTPS
 ``nikto -h 10.10.10.10 -p 443```
 
 WFuzz
