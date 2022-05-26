@@ -594,7 +594,7 @@ Todo List:
 
 Thank you:
 ----------------
-# Thanks to these people for including my cheatsheet on their site/page:
+# Thanks to these people for including my cheatsheet on their website/blog:
 - https://khaoticdev.net/cheatsheets/#ad
 - https://www.facebook.com/ncybersec/posts/1541830509321001
 - https://www.facebook.com/cyberg0100/posts/github-sinfulzjusttryharder-justtryharder-a-cheat-sheet-which-will-aid-you-throu/653235345249466
@@ -603,4 +603,4 @@ Thank you:
 - https://opensourcelibs.com/libs/pentesting-tools
 - https://gitmemory.com/brhannah
 - https://www.bugbountytips.tech/2020/08/23/justtryharderpwk-cheatsheetkali-linux-cheatsheethydra-cheatsheetsecu-2/
-- 
+- https://pythonlang.dev/category/oscp/
