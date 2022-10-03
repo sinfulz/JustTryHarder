@@ -1,3 +1,0 @@
-<img src="" onerror=alert(1) />
-
-XSS <script>alert(1)</script>
