@@ -721,7 +721,7 @@ To find World Writeable Directories in Linux use the command:
 
 # Thanks to these people for including my cheatsheet on their website/blog:
 
--   https://khaoticdev.net/cheatsheets/#ad
+-   https://khaoticdev.net/cheatsheets/#collections
 -   https://www.facebook.com/ncybersec/posts/1541830509321001
 -   https://www.facebook.com/cyberg0100/posts/github-sinfulzjusttryharder-justtryharder-a-cheat-sheet-which-will-aid-you-throu/653235345249466
 -   https://www.reddit.com/r/CyberSpaceVN/comments/f3n2wp/github_sinfulzjusttryharder_justtryharder_a_cheat
