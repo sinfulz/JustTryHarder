@@ -716,6 +716,7 @@ To find World Writeable Directories in Linux use the command:
 -   Integrate the files in the repo into the cheatsheet
 -   Migrate to GitBook
 -   Include screenshots/gifs into the cheatsheet if needed
+-   Add a Table of Contents similar to PayloadAllTheThings' repos
 
 ## Thank you:
 
